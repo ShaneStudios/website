@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Shane Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
+            <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
+            <li><a href="articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="about.html"><i class="fas fa-user-circle"></i> About Shane</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="logged-in-item"><a href="account.html" data-requires-login="true"><i class="fas fa-user-cog"></i> Account</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="login.html" class="logged-out-item">Log In</a>
+            <a href="signup.html" class="logged-out-item">Sign Up</a>
+            <a href="#" class="logged-in-item" id="logout-link">Log Out</a>
+        </div>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="header-title">Shane Studios</span>
+        </header>
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="animated-gradient-text">Innovate. Create. Inspire.</h1>
+                    <p>Welcome to the central hub for all my projects, articles, and creative work. Designed and developed by me, Shane.</p>
+                    <a href="projects.html" class="cta-button">Explore My Work</a>
+                </div>
+            </section>
+            <section class="featured-grid">
+                <div class="card reveal">
+                    <i class="fas fa-laptop-code card-icon"></i>
+                    <h3>RyxIDE Demo</h3>
+                    <p>Experience a live demonstration of my custom-built Integrated Development Environment.</p>
+                    <a href="ryxide.html" class="card-link">Launch Demo <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card reveal">
+                    <i class="fas fa-project-diagram card-icon"></i>
+                    <h3>Projects</h3>
+                    <p>A curated portfolio of my favorite software development and design projects.</p>
+                    <a href="projects.html" class="card-link">View Projects <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card reveal">
+                    <i class="fas fa-file-code card-icon"></i>
+                    <h3>Snippets</h3>
+                    <p>A collection of useful code snippets and gists for various programming challenges.</p>
+                    <a href="snippets.html" class="card-link">Browse Snippets <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card reveal">
+                    <i class="fas fa-newspaper card-icon"></i>
+                    <h3>Articles</h3>
+                    <p>In-depth articles about technology, development trends, and personal insights.</p>
+                    <a href="articles.html" class="card-link">Read Articles <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
