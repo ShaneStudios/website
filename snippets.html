@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snippets - Shane Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="snippets.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
+            <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
+            <li><a href="articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="about.html"><i class="fas fa-user-circle"></i> About Shane</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="logged-in-item"><a href="account.html" data-requires-login="true"><i class="fas fa-user-cog"></i> Account</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="login.html" class="logged-out-item">Log In</a>
+            <a href="signup.html" class="logged-out-item">Sign Up</a>
+            <a href="#" class="logged-in-item" id="logout-link">Log Out</a>
+        </div>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Code Snippets</span>
+        </header>
+        <main>
+            <div class="snippets-intro">
+                <h2>A Collection of Curated Code</h2>
+                <p>Here are some of my favorite JavaScript snippets. They range from highly useful utilities to fun, creative, and sometimes troll-worthy experiments. Many include a live preview below the code.</p>
+            </div>
+            <div class="snippets-container">
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>1. Matrix Digital Rain</h3><p>A classic effect that simulates the "digital rain" from The Matrix using an HTML Canvas. It's a great example of rendering loops and basic animation.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="comment">// HTML Required: <canvas id="matrixCanvas"></canvas></span>
+<span class="keyword">const</span> canvas = document.<span class="func">getElementById</span>(<span class="string">'matrixCanvas'</span>);
+<span class="keyword">const</span> ctx = canvas.<span class="func">getContext</span>(<span class="string">'2d'</span>);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+<span class="keyword">const</span> katakana = <span class="string">'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン'</span>;
+<span class="keyword">const</span> alphabet = katakana + <span class="string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'</span>;
+<span class="keyword">const</span> fontSize = <span class="number">16</span>;
+<span class="keyword">const</span> columns = canvas.width / fontSize;
+<span class="keyword">const</span> rainDrops = [];
+<span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x < columns; x++) { rainDrops[x] = <span class="number">1</span>; }
+<span class="keyword">const</span> <span class="func-name">draw</span> = () => {
+    ctx.fillStyle = <span class="string">'rgba(0, 0, 0, 0.05)'</span>;
+    ctx.<span class="func">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+    ctx.fillStyle = <span class="string">'#0F0'</span>;
+    ctx.font = fontSize + <span class="string">'px monospace'</span>;
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < rainDrops.length; i++) {
+        <span class="keyword">const</span> text = alphabet.<span class="func">charAt</span>(Math.<span class="func">floor</span>(Math.<span class="func">random</span>() * alphabet.length));
+        ctx.<span class="func">fillText</span>(text, i * fontSize, rainDrops[i] * fontSize);
+        <span class="keyword">if</span> (rainDrops[i] * fontSize > canvas.height && Math.<span class="func">random</span>() > <span class="number">0.975</span>) { rainDrops[i] = <span class="number">0</span>; }
+        rainDrops[i]++;
+    }
+};
+<span class="func">setInterval</span>(draw, <span class="number">30</span>);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody,%20html%20%7B%20margin:%200;%20padding:%200;%20overflow:%20hidden;%20background:%20%23000;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Ccanvas%20id=%27matrixCanvas%27%3E%3C/canvas%3E%3Cscript%3Econst%20canvas%20=%20document.getElementById(%27matrixCanvas%27);const%20ctx%20=%20canvas.getContext(%272d%27);canvas.width%20=%20window.innerWidth;canvas.height%20=%20window.innerHeight;const%20katakana%20=%20%27%E3%82%A2%E3%82%A1%E3%82%AB%E3%82%B5%E3%82%BF%E3%83%8A%E3%83%8F%E3%83%9E%E3%83%A4%E3%83%A3%E3%83%A9%E3%83%AF%E3%82%AC%E3%82%B6%E3%83%80%E3%83%90%E3%83%91%E3%82%A4%E3%82%A3%E3%82%AD%E3%82%B7%E3%83%81%E3%83%8B%E3%83%92%E3%83%9F%E3%83%AA%E3%83%B0%E3%82%AE%E3%82%B8%E3%83%82%E3%83%93%E3%83%94%E3%82%A6%E3%82%A5%E3%82%AF%E3%82%B9%E3%83%84%E3%83%8C%E3%83%95%E3%83%A0%E3%83%A6%E3%83%A5%E3%83%AB%E3%82%B0%E3%82%BA%E3%83%96%E3%83%85%E3%83%97%E3%82%A8%E3%82%A7%E3%82%B1%E3%82%BB%E3%83%86%E3%83%8D%E3%83%98%E3%83%A1%E3%83%AC%E3%83%B1%E3%82%B2%E3%82%BC%E3%83%87%E3%83%99%E3%83%9A%E3%82%AA%E3%82%A9%E3%82%B3%E3%82%BD%E3%83%88%E3%83%8E%E3%83%9B%E3%83%A2%E3%83%A8%E3%83%A7%E3%83%AD%E3%83%B2%E3%82%B4%E3%82%BE%E3%83%89%E3%83%9C%E3%83%9D%E3%83%B4%E3%83%83%E3%83%B3%27;const%20alphabet%20=%20katakana%20+%20%27ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%27;const%20fontSize%20=%2016;const%20columns%20=%20canvas.width%20/%20fontSize;const%20rainDrops%20=%20[];for%20(let%20x%20=%200;%20x%20%3C%20columns;%20x++)%20%7B%20rainDrops[x]%20=%201;%20%7D;const%20draw%20=%20()%20=%3E%20%7Bctx.fillStyle%20=%20%27rgba(0,%200,%200,%200.05)%27;ctx.fillRect(0,%200,%20canvas.width,%20canvas.height);ctx.fillStyle%20=%20%27%230F0%27;ctx.font%20=%20fontSize%20+%20%27px%20monospace%27;for%20(let%20i%20=%200;%20i%20%3C%20rainDrops.length;%20i++)%20%7Bconst%20text%20=%20alphabet.charAt(Math.floor(Math.random()%20*%20alphabet.length));ctx.fillText(text,%20i%20*%20fontSize,%20rainDrops[i]%20*%20fontSize);if%20(rainDrops[i]%20*%20fontSize%20%3E%20canvas.height%20%26%26%20Math.random()%20%3E%200.975)%20%7B%20rainDrops[i]%20=%200;%20%7DrainDrops[i]++;%7D%7D;setInterval(draw,%2030);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>2. Advanced Debounce Function</h3><p>Extremely useful for performance. This higher-order function prevents a function from being called too frequently, such as on window resize or search input.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">debounce</span> = (func, wait) => {
+    <span class="keyword">let</span> timeoutId = <span class="keyword">null</span>;
+    <span class="keyword">return</span> <span class="keyword">function</span>(...args) {
+        <span class="keyword">const</span> context = <span class="keyword">this</span>;
+        <span class="func">clearTimeout</span>(timeoutId);
+        timeoutId = <span class="func">setTimeout</span>(() => {
+            func.<span class="func">apply</span>(context, args);
+        }, wait);
+    };
+};
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> searchInput = document.<span class="func">getElementById</span>(<span class="string">'searchInput'</span>);
+<span class="keyword">const</span> log = document.<span class="func">getElementById</span>(<span class="string">'log'</span>);
+<span class="keyword">const</span> <span class="func-name">handleSearch</span> = (event) => {
+    log.textContent = <span class="string">`API call with: "${event.target.value}"`</span>;
+};
+<span class="keyword">const</span> debouncedSearch = <span class="func">debounce</span>(handleSearch, <span class="number">500</span>);
+searchInput.<span class="func">addEventListener</span>(<span class="string">'input'</span>, debouncedSearch);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20font-family:%20sans-serif;%20display:%20flex;%20flex-direction:%20column;%20align-items:%20center;%20justify-content:%20center;%20height:%20100vh;%20margin:%200;%20background:%20%232a313d;%20color:%20%23fff;%20text-align:%20center;%20%7D%20input%20%7B%20padding:%208px;%20font-size:%2016px;%20width:%2080%25;%20border:%201px%20solid%20%23555;%20background:%20%231f2937;%20color:%20%23fff;%20border-radius:%204px;%20%7D%20p%20%7B%20margin-top:%2020px;%20font-family:%20monospace;%20color:%20%230f0;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Ch3%3EType%20in%20the%20box%20below:%3C/h3%3E%3Cinput%20id=%27searchInput%27%20type=%27text%27%20placeholder=%27Search...%27/%3E%3Cp%20id=%27log%27%3EWaiting%20for%20input...%3C/p%3E%3Cscript%3Econst%20debounce%20=%20(func,%20wait)%20=%3E%20%7Blet%20timeoutId%20=%20null;return%20function(...args)%20%7Bconst%20context%20=%20this;clearTimeout(timeoutId);timeoutId%20=%20setTimeout(()%20=%3E%20%7Bfunc.apply(context,%20args);%7D,%20wait);%7D;%7D;const%20searchInput%20=%20document.getElementById(%27searchInput%27);const%20log%20=%20document.getElementById(%27log%27);const%20handleSearch%20=%20(event)%20=%3E%20%7Bif%20(event.target.value.length%20===%200)%20%7Blog.textContent%20=%20%27Waiting%20for%20input...%27;return;%7Dlog.textContent%20=%20%60API%20call%20with:%20%27%24%7Bevent.target.value%7D%27%60;%7D;const%20debouncedSearch%20=%20debounce(handleSearch,%20500);searchInput.addEventListener(%27input%27,%20debouncedSearch);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>3. Console Log an Image</h3><p>A very neat trick to display a full-color image directly in the browser's developer console. It works by applying CSS to the console output using the `%c` format specifier.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">logImage</span> = (url, scale = <span class="number">1</span>) => {
+    <span class="keyword">const</span> img = <span class="keyword">new</span> <span class="func-name">Image</span>();
+    img.onload = <span class="keyword">function</span>() {
+        <span class="keyword">const</span> style = [
+            <span class="string">'font-size: 1px;'</span>,
+            <span class="string">`padding: ${this.height * scale / 2}px ${this.width * scale / 2}px;`</span>,
+            <span class="string">`background: url(${url}) no-repeat;`</span>,
+            <span class="string">'background-size: contain;'</span>
+        ].<span class="func">join</span>(<span class="string">' '</span>);
+        console.<span class="func">log</span>(<span class="string">'%c '</span>, style);
+        console.<span class="func">log</span>(<span class="string">`Image logged from: ${url}`</span>);
+    };
+    img.onerror = () => console.<span class="func">error</span>(<span class="string">`Failed to load image: ${url}`</span>);
+    img.src = url;
+};
+<span class="comment">// --- Example Usage ---</span>
+<span class="func">logImage</span>(<span class="string">'https://i.imgur.com/gY5mO0d.png'</span>, <span class="number">0.5</span>);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Preview not applicable. <br>Open your browser's developer console (F12) to see the result of this code.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>4. Looping Typewriter Effect</h3><p>This function creates a classic "typewriter" effect that reveals text one character at a time. This version automatically restarts after a 10-second delay.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">typewriter</span>(element, text, speed = <span class="number">50</span>, onComplete) {
+    <span class="keyword">let</span> i = <span class="number">0</span>;
+    element.innerHTML = <span class="string">""</span>;
+    element.style.visibility = <span class="string">'visible'</span>;
+    <span class="keyword">const</span> <span class="func-name">typing</span> = () => {
+        <span class="keyword">if</span> (i < text.length) {
+            element.innerHTML += text.<span class="func">charAt</span>(i);
+            i++;
+            <span class="func">setTimeout</span>(typing, speed);
+        } <span class="keyword">else if</span> (onComplete) {
+            <span class="func">onComplete</span>();
+        }
+    };
+    <span class="func">typing</span>();
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> title = document.<span class="func">getElementById</span>(<span class="string">'myTitle'</span>);
+<span class="keyword">const</span> text = <span class="string">"Welcome to Shane Studios.\nInitializing..."</span>;
+<span class="keyword">const</span> <span class="func-name">startTypingLoop</span> = () => {
+    <span class="func">typewriter</span>(title, text, <span class="number">75</span>, () => {
+        <span class="func">setTimeout</span>(startTypingLoop, <span class="number">10000</span>); <span class="comment">// Wait 10s and restart</span>
+    });
+};
+<span class="func">startTypingLoop</span>();</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20height:%20100vh;%20margin:%200;%20background:%20%23111827;%20%7D%20%23myTitle%20%7B%20color:%20%230f0;%20font-family:%20monospace;%20font-size:%2024px;%20white-space:%20pre-wrap;%20border-right:%200.15em%20solid%20%230f0;%20animation:%20blink-caret%20.75s%20step-end%20infinite;%20%7D%20@keyframes%20blink-caret%20%7B%20from,%20to%20%7B%20border-color:%20transparent%20%7D%2050%25%20%7B%20border-color:%20%230f0;%20%7D%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Ch1%20id=%27myTitle%27%3E%3C/h1%3E%3Cscript%3Efunction%20typewriter(element,%20text,%20speed%20=%2050,%20onComplete)%20%7Blet%20i%20=%200;element.innerHTML%20=%20%27%27;element.style.visibility%20=%20%27visible%27;const%20typing%20=%20()%20=%3E%20%7Bif%20(i%20%3C%20text.length)%20%7Belement.innerHTML%20+=%20text.charAt(i);i++;setTimeout(typing,%20speed);%7D%20else%20if%20(onComplete)%20%7BonComplete();%7D%7D;typing();%7D;const%20titleElement%20=%20document.getElementById(%27myTitle%27);const%20welcomeText%20=%20%27Welcome%20to%20Shane%20Studios.%5CnInitializing...%27;const%20startTypingLoop%20=%20()%20=%3E%20%7Btypewriter(titleElement,%20welcomeText,%2075,%20()%20=%3E%20%7BsetTimeout(startTypingLoop,%2010000);%7D);%7D;startTypingLoop();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>5. Detect Ad Blocker</h3><p>A slightly controversial but useful snippet. It works by creating a "bait" element that ad blockers typically hide, then checks if the element is actually visible in the DOM.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">async function</span> <span class="func-name">detectAdBlock</span>() {
+    <span class="keyword">return new</span> <span class="func-name">Promise</span>((resolve) => {
+        <span class="keyword">const</span> bait = document.<span class="func">createElement</span>(<span class="string">'div'</span>);
+        bait.innerHTML = <span class="string">'&nbsp;'</span>;
+        bait.className = <span class="string">'pub_300x250 pub_300x250m pub_728x90 text-ad text-ads'</span>;
+        bait.style.cssText = <span class="string">'position:absolute; top:-10px; left:-10px; width:1px; height:1px;'</span>;
+        document.body.<span class="func">appendChild</span>(bait);
+        <span class="func">requestAnimationFrame</span>(() => {
+            <span class="func">setTimeout</span>(() => {
+                <span class="func">resolve</span>(bait.offsetHeight === <span class="number">0</span>);
+                document.body.<span class="func">removeChild</span>(bait);
+            }, <span class="number">100</span>);
+        });
+    });
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> statusEl = document.<span class="func">getElementById</span>(<span class="string">'adblock-status'</span>);
+<span class="func">detectAdBlock</span>().<span class="func">then</span>(isBlocked => {
+    statusEl.textContent = isBlocked ? <span class="string">'Ad Blocker: DETECTED'</span> : <span class="string">'Ad Blocker: NOT DETECTED'</span>;
+    statusEl.style.color = isBlocked ? <span class="string">'#f87171'</span> : <span class="string">'#4ade80'</span>;
+});</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20height:%20100vh;%20margin:%200;%20background:%20%231f2937;%20color:%20%23fff;%20text-align:%20center;%20%7D%20%23adblock-status%20%7B%20font-family:%20monospace;%20font-size:%2024px;%20font-weight:%20bold;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%27adblock-status%27%3EDetecting...%3C/div%3E%3Cscript%3Easync%20function%20detectAdBlock()%20%7Breturn%20new%20Promise((resolve)%20=%3E%20%7Bconst%20bait%20=%20document.createElement(%27div%27);bait.innerHTML%20=%20%27%26nbsp;%27;bait.className%20=%20%27pub_300x250%20pub_300x250m%20pub_728x90%20text-ad%20text-ads%27;bait.style.cssText%20=%20%27position:absolute;%20top:-10px;%20left:-10px;%20width:1px;%20height:1px;%27;document.body.appendChild(bait);requestAnimationFrame(()%20=%3E%20%7BsetTimeout(()%20=%3E%20%7Bresolve(bait.offsetHeight%20===%200);document.body.removeChild(bait);%7D,%20100);%7D);%7D);%7D;const%20statusEl%20=%20document.getElementById(%27adblock-status%27);detectAdBlock().then(isBlocked%20=%3E%20%7BstatusEl.textContent%20=%20isBlocked%20?%20%27Ad%20Blocker:%20DETECTED%27%20:%20%27Ad%20Blocker:%20NOT%20DETECTED%27;statusEl.style.color%20=%20isBlocked%20?%20%27%23f87171%27%20:%20%27%234ade80%27;%7D);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>6. Konami Code Listener</h3><p>A classic easter egg. This snippet listens for the famous Konami Code sequence (↑↑↓↓←→←→BA) and executes a callback function when the user correctly enters it.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">onKonamiCode</span>(callback) {
+    <span class="keyword">const</span> konamiCode = [<span class="string">'ArrowUp'</span>, <span class="string">'ArrowUp'</span>, <span class="string">'ArrowDown'</span>, <span class="string">'ArrowDown'</span>, <span class="string">'ArrowLeft'</span>, <span class="string">'ArrowRight'</span>, <span class="string">'ArrowLeft'</span>, <span class="string">'ArrowRight'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>];
+    <span class="keyword">let</span> index = <span class="number">0</span>;
+    document.<span class="func">addEventListener</span>(<span class="string">'keydown'</span>, (<span class="keyword">event</span>) => {
+        <span class="keyword">if</span> (<span class="keyword">event</span>.key === konamiCode[index]) {
+            index++;
+            <span class="keyword">if</span> (index === konamiCode.length) {
+                <span class="func">callback</span>();
+                index = <span class="number">0</span>;
+            }
+        } <span class="keyword">else</span> {
+            index = <span class="number">0</span>;
+        }
+    });
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="func">onKonamiCode</span>(() => {
+    alert(<span class="string">'Konami Code Activated! +30 Lives!'</span>);
+});</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff;font-family:sans-serif;text-align:center%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%3EClick%20here,%20then%20type%20the%20code:%3Cbr%3E%E2%86%91%E2%86%91%E2%86%93%E2%86%93%E2%86%90%E2%86%92%E2%86%90%E2%86%92BA%3C/div%3E%3Cscript%3Efunction%20onKonamiCode(callback)%7Bconst%20c=%5B%22ArrowUp%22,%22ArrowUp%22,%22ArrowDown%22,%22ArrowDown%22,%22ArrowLeft%22,%22ArrowRight%22,%22ArrowLeft%22,%22ArrowRight%22,%22b%22,%22a%22%5D;let%20i=0;document.addEventListener(%22keydown%22,e=%3E%7Be.key===c%5Bi%5D?i++:i=0;if(i===c.length)%7Bcallback();i=0%7D%7D)%7D;onKonamiCode(()=%3Ealert(%22Konami%20Code%20Activated!%22));%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>7. Deep Clone an Object</h3><p>A must-have utility. This function recursively clones an object, ensuring that nested objects and arrays are also copied, not just referenced.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">deepClone</span>(source) {
+    <span class="keyword">if</span> (source === <span class="keyword">null</span> || <span class="keyword">typeof</span> source !== <span class="string">'object'</span>) <span class="keyword">return</span> source;
+    <span class="keyword">if</span> (source <span class="keyword">instanceof</span> <span class="func-name">Date</span>) <span class="keyword">return new</span> <span class="func-name">Date</span>(source.<span class="func">getTime</span>());
+    <span class="keyword">if</span> (source <span class="keyword">instanceof</span> <span class="func-name">Array</span>) <span class="keyword">return</span> source.<span class="func">map</span>(item => <span class="func">deepClone</span>(item));
+    <span class="keyword">if</span> (source <span class="keyword">instanceof</span> <span class="func-name">Object</span>) {
+        <span class="keyword">const</span> clone = {};
+        <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> source) {
+            <span class="keyword">if</span> (source.<span class="func">hasOwnProperty</span>(key)) {
+                clone[key] = <span class="func">deepClone</span>(source[key]);
+            }
+        }
+        <span class="keyword">return</span> clone;
+    }
+    <span class="keyword">throw new</span> <span class="func-name">Error</span>(<span class="string">"Unable to copy source!"</span>);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> original = { a: <span class="number">1</span>, b: { c: [<span class="number">1</span>, <span class="number">2</span>] } };
+<span class="keyword">const</span> copy = <span class="func">deepClone</span>(original);
+copy.b.c.push(<span class="number">3</span>);
+console.<span class="func">log</span>(<span class="string">'Original:'</span>, JSON.<span class="func">stringify</span>(original));
+console.<span class="func">log</span>(<span class="string">'Copy:'</span>, JSON.<span class="func">stringify</span>(copy));</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Preview not applicable. <br>This is a utility function whose result is seen in the developer console.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>8. Chaotic Button</h3><p>A classic troll. This function makes an element jump to a random position within the viewport whenever the mouse cursor gets near it, making it impossible to click.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">makeButtonChaotic</span>(element) {
+    <span class="keyword">const</span> <span class="func-name">moveButton</span> = () => {
+        <span class="keyword">const</span> w = window.innerWidth, h = window.innerHeight;
+        <span class="keyword">const</span> btnW = element.offsetWidth, btnH = element.offsetHeight;
+        <span class="keyword">const</span> newX = Math.<span class="func">floor</span>(Math.<span class="func">random</span>() * (w - btnW));
+        <span class="keyword">const</span> newY = Math.<span class="func">floor</span>(Math.<span class="func">random</span>() * (h - btnH));
+        element.style.left = `${newX}px`;
+        element.style.top = `${newY}px`;
+    };
+    element.<span class="func">addEventListener</span>(<span class="string">'mouseover'</span>, moveButton);
+    element.<span class="func">addEventListener</span>(<span class="string">'focus'</span>, moveButton);
+}
+<span class="comment">// --- CSS & HTML Required ---</span>
+<span class="comment">// #chaoticBtn { position: absolute; transition: all 0.2s; }</span>
+<span class="comment">// <button id="chaoticBtn">Try to Click Me!</button></span>
+<span class="func">makeButtonChaotic</span>(document.<span class="func">getElementById</span>(<span class="string">'chaoticBtn'</span>));</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20overflow:%20hidden;%20background:%20%231f2937;%20%7D%20%23chaoticBtn%20%7B%20position:%20absolute;%20top:%2040%25;%20left:%2040%25;%20padding:%2010px%2020px;%20background:%20%23f87171;%20color:%20white;%20border:%20none;%20border-radius:%205px;%20cursor:%20pointer;%20transition:%20all%200.2s%20ease;%20font-family:%20sans-serif;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cbutton%20id=%27chaoticBtn%27%3ETry%20to%20Click%20Me!%3C/button%3E%3Cscript%3Efunction%20makeButtonChaotic(element)%20%7Bconst%20moveButton%20=%20()%20=%3E%20%7Bconst%20w%20=%20window.innerWidth,%20h%20=%20window.innerHeight;const%20btnW%20=%20element.offsetWidth,%20btnH%20=%20element.offsetHeight;const%20newX%20=%20Math.floor(Math.random()%20*%20(w%20-%20btnW));const%20newY%20=%20Math.floor(Math.random()%20*%20(h%20-%20btnH));element.style.left%20=%20%60%24%7BnewX%7Dpx%60;element.style.top%20=%20%60%24%7BnewY%7Dpx%60;%7D;element.addEventListener(%27mouseover%27,%20moveButton);element.addEventListener(%27focus%27,%20moveButton);%7D;makeButtonChaotic(document.getElementById(%27chaoticBtn%27));%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>9. Get Average Color of Image</h3><p>A very cool utility that uses a canvas to read the pixel data of an image and calculate its average color. Useful for creating dynamic UI that matches image content.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">getAverageRGB</span>(imgEl) {
+    <span class="keyword">const</span> canvas = document.<span class="func">createElement</span>(<span class="string">'canvas'</span>);
+    <span class="keyword">const</span> ctx = canvas.<span class="func">getContext</span>(<span class="string">'2d'</span>);
+    <span class="keyword">const</span> blockSize = <span class="number">5</span>; <span class="comment">// Process every 5th pixel for speed</span>
+    <span class="keyword">let</span> rgb = { r: <span class="number">0</span>, g: <span class="number">0</span>, b: <span class="number">0</span> };
+    <span class="keyword">let</span> count = <span class="number">0</span>;
+    canvas.width = imgEl.width;
+    canvas.height = imgEl.height;
+    ctx.<span class="func">drawImage</span>(imgEl, <span class="number">0</span>, <span class="number">0</span>);
+    <span class="keyword">const</span> data = ctx.<span class="func">getImageData</span>(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < data.data.length; i += <span class="number">4</span> * blockSize) {
+        count++;
+        rgb.r += data.data[i];
+        rgb.g += data.data[i + <span class="number">1</span>];
+        rgb.b += data.data[i + <span class="number">2</span>];
+    }
+    rgb.r = ~~(rgb.r / count);
+    rgb.g = ~~(rgb.g / count);
+    rgb.b = ~~(rgb.b / count);
+    <span class="keyword">return</span> rgb;
+}</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>This snippet requires an image element and is best used in a larger application. The real power is in the returned RGB object.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>10. Smooth Scroll to Element</h3><p>A modern, one-line replacement for older, more complex scrolling libraries. It uses the built-in `scrollIntoView` method with the 'smooth' behavior option.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">smoothScrollTo</span> = (selector) => {
+    document.<span class="func">querySelector</span>(selector)?.<span class="func">scrollIntoView</span>({
+        behavior: <span class="string">'smooth'</span>
+    });
+};
+<span class="comment">// --- Example Usage ---</span>
+<span class="comment">// <a href="#target" onclick="smoothScrollTo('#target'); event.preventDefault();">Go to Target</a></span></code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ehtml%7Bscroll-behavior:smooth%7Dbody%7Bfont-family:sans-serif;background:%231f2937;color:%23fff;text-align:center;margin:0%7D.section%7Bheight:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center%7D%23top%7Bbackground-color:%23111827%7D%23bottom%7Bbackground-color:%23374151%7Dbutton,a%7Bpadding:10px%2020px;font-size:16px;cursor:pointer;background:%235e81f2;color:%23fff;border:none;border-radius:5px;text-decoration:none%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20class=%27section%27%20id=%27top%27%3E%3Ch1%3ETop%20Section%3C/h1%3E%3Ca%20href=%22%23bottom%22%3EGo%20to%20Bottom%3C/a%3E%3C/div%3E%3Cdiv%20class=%27section%27%20id=%27bottom%27%3E%3Ch1%3EBottom%20Section%3C/h1%3E%3Ca%20href=%22%23top%22%3EGo%20to%20Top%3C/a%3E%3C/div%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>11. Fake Virus Prank</h3><p>A harmless but hilarious prank. This snippet simulates a fake virus scan by rapidly printing "scary" messages to the console and changing the page's background color.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">fakeVirus</span>() {
+    <span class="keyword">const</span> messages = [
+        <span class="string">'[SCANNING] C:/Windows/System32...'</span>,
+        <span class="string">'[WARNING] Malware detected: "Win32.Troll.js"'</span>,
+        <span class="string">'[ACCESSING] Kernel memory...'</span>,
+        <span class="string">'[ERROR] Permission denied. Overriding...'</span>,
+        <span class="string">'[UPLOADING] User data to 127.0.0.1...'</span>,
+        <span class="string">'[SUCCESS] Data compromised.'</span>,
+        <span class="string">'[DELETING] System files... do not reboot.'</span>,
+    ];
+    <span class="keyword">let</span> i = <span class="number">0</span>;
+    console.clear();
+    <span class="keyword">const</span> interval = <span class="func">setInterval</span>(() => {
+        <span class="keyword">if</span> (i < messages.length) {
+            console.warn(messages[i]);
+            i++;
+            document.body.style.backgroundColor = i % <span class="number">2</span> === <span class="number">0</span> ? <span class="string">'#330000'</span> : <span class="string">'#000'</span>;
+        } <span class="keyword">else</span> {
+            <span class="func">clearInterval</span>(interval);
+            console.error(<span class="string">'[FATAL] System integrity compromised. Just kidding!'</span>);
+            document.body.style.backgroundColor = <span class="string">'#003300'</span>;
+        }
+    }, <span class="number">1500</span>);
+}</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Preview not applicable. <br>This prank primarily affects the developer console. Copy the code and run it yourself for the full effect!</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>12. Starfield Background</h3><p>A beautiful animated background of stars moving towards the viewer. This uses a canvas to create a simple 3D effect by updating star positions and sizes in a render loop.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> canvas = document.<span class="func">getElementById</span>(<span class="string">'starfield'</span>);
+<span class="keyword">const</span> ctx = canvas.<span class="func">getContext</span>(<span class="string">'2d'</span>);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+<span class="keyword">const</span> stars = <span class="number">800</span>;
+<span class="keyword">const</span> speed = <span class="number">0.05</span>;
+<span class="keyword">let</span> starArray = [];
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < stars; i++) {
+  starArray.push({
+    x: Math.<span class="func">random</span>() * canvas.width * <span class="number">2</span> - canvas.width,
+    y: Math.<span class="func">random</span>() * canvas.height * <span class="number">2</span> - canvas.height,
+    z: Math.<span class="func">random</span>() * canvas.width,
+  });
+}
+<span class="keyword">function</span> <span class="func-name">animate</span>() {
+    ctx.fillStyle = <span class="string">'black'</span>;
+    ctx.<span class="func">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+    ctx.fillStyle = <span class="string">'white'</span>;
+    ctx.<span class="func">save</span>();
+    ctx.<span class="func">translate</span>(canvas.width / <span class="number">2</span>, canvas.height / <span class="number">2</span>);
+    starArray.<span class="func">forEach</span>(star => {
+        star.z -= speed;
+        <span class="keyword">if</span> (star.z <= <span class="number">0</span>) { star.z = canvas.width; }
+        <span class="keyword">const</span> scale = canvas.width / star.z;
+        <span class="keyword">const</span> px = star.x * scale;
+        <span class="keyword">const</span> py = star.y * scale;
+        <span class="keyword">const</span> radius = Math.<span class="func">max</span>(scale, <span class="number">0.1</span>);
+        ctx.<span class="func">beginPath</span>();
+        ctx.<span class="func">arc</span>(px, py, radius, <span class="number">0</span>, <span class="number">2</span> * Math.PI);
+        ctx.<span class="func">fill</span>();
+    });
+    ctx.<span class="func">restore</span>();
+    <span class="func">requestAnimationFrame</span>(animate);
+}
+<span class="func">animate</span>();</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody,%20html%20%7B%20margin:%200;%20padding:%200;%20overflow:%20hidden;%20background:%20%23000;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Ccanvas%20id=%27starfield%27%3E%3C/canvas%3E%3Cscript%3Econst%20canvas%20=%20document.getElementById(%27starfield%27);const%20ctx%20=%20canvas.getContext(%272d%27);canvas.width%20=%20window.innerWidth;canvas.height%20=%20window.innerHeight;const%20stars%20=%20400;const%20speed%20=%200.05;let%20starArray%20=%20[];for%20(let%20i%20=%200;%20i%20%3C%20stars;%20i++)%20%7BstarArray.push(%7Bx:%20Math.random()%20*%20canvas.width%20*%202%20-%20canvas.width,y:%20Math.random()%20*%20canvas.height%20*%202%20-%20canvas.height,z:%20Math.random()%20*%20canvas.width,%7D);%7Dfunction%20animate()%20%7Bctx.fillStyle%20=%20%27black%27;ctx.fillRect(0,%200,%20canvas.width,%20canvas.height);ctx.fillStyle%20=%20%27white%27;ctx.save();ctx.translate(canvas.width%20/%202,%20canvas.height%20/%202);starArray.forEach(star%20=%3E%20%7Bstar.z%20-=%20speed;if%20(star.z%20%3C=%200)%20%7B%20star.z%20=%20canvas.width;%20%7Dconst%20scale%20=%20canvas.width%20/%20star.z;const%20px%20=%20star.x%20*%20scale;const%20py%20=%20star.y%20*%20scale;const%20radius%20=%20Math.max(scale,%200.1);ctx.beginPath();ctx.arc(px,%20py,%20radius,%200,%202%20*%20Math.PI);ctx.fill();%7D);ctx.restore();requestAnimationFrame(animate);%7Danimate();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>13. Get Query Parameter from URL</h3><p>A simple but incredibly common need. This function retrieves the value of a specific query parameter from the current URL using the modern `URLSearchParams` API.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">getQueryParam</span> = (param) => {
+    <span class="keyword">const</span> urlParams = <span class="keyword">new</span> <span class="func-name">URLSearchParams</span>(window.location.search);
+    <span class="keyword">return</span> urlParams.<span class="func">get</span>(param);
+};
+<span class="comment">// --- Example Usage ---</span>
+<span class="comment">// If the URL is "yourpage.html?user=shane&id=123"</span>
+<span class="keyword">const</span> user = <span class="func">getQueryParam</span>(<span class="string">'user'</span>); <span class="comment">// Returns "shane"</span>
+<span class="keyword">const</span> id = <span class="func">getQueryParam</span>(<span class="string">'id'</span>);   <span class="comment">// Returns "123"</span></code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20height:%20100vh;%20margin:%200;%20background:%20%231f2937;%20color:%20%23fff;%20text-align:%20center;%20%7D%20%23output%20%7B%20font-family:%20monospace;%20font-size:%2020px;%20white-space:pre-wrap;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%27output%27%3E%3C/div%3E%3Cscript%3Econst%20fakeUrl%20=%20%27https://example.com?user=shane%26id=123%27;const%20urlParams%20=%20new%20URLSearchParams(fakeUrl.split(%27?%27)[1]);const%20getQueryParam%20=%20(param)%20=%3E%20urlParams.get(param);const%20user%20=%20getQueryParam(%27user%27);const%20id%20=%20getQueryParam(%27id%27);document.getElementById(%27output%27).textContent%20=%20%60From%20%27.../?user=shane%26id=123%27%5Cn%5CnUser:%20%24%7Buser%7D%5CnID:%20%24%7Bid%7D%60;%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>14. Confetti Cannon</h3><p>Celebrate success! This function creates a burst of colorful confetti particles that animate with gravity and fade out, perfect for successful form submissions or completing a task.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">launchConfetti</span>() {
+    <span class="comment">// Requires the 'canvas-confetti' library</span>
+    <span class="comment">// <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script></span>
+    <span class="keyword">const</span> count = <span class="number">200</span>;
+    <span class="keyword">const</span> defaults = { origin: { y: <span class="number">0.7</span> } };
+    <span class="keyword">function</span> <span class="func-name">fire</span>(particleRatio, opts) {
+        <span class="func">confetti</span>({ ...defaults, ...opts, particleCount: Math.<span class="func">floor</span>(count * particleRatio) });
+    }
+    <span class="func">fire</span>(<span class="number">0.25</span>, { spread: <span class="number">26</span>, startVelocity: <span class="number">55</span> });
+    <span class="func">fire</span>(<span class="number">0.2</span>, { spread: <span class="number">60</span> });
+    <span class="func">fire</span>(<span class="number">0.35</span>, { spread: <span class="number">100</span>, decay: <span class="number">0.91</span>, scalar: <span class="number">0.8</span> });
+    <span class="func">fire</span>(<span class="number">0.1</span>, { spread: <span class="number">120</span>, startVelocity: <span class="number">25</span>, decay: <span class="number">0.92</span>, scalar: <span class="number">1.2</span> });
+    <span class="func">fire</span>(<span class="number">0.1</span>, { spread: <span class="number">120</span>, startVelocity: <span class="number">45</span> });
+}</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20height:%20100vh;%20margin:%200;%20background:%20%23111827;%20%7D%20button%20%7B%20padding:%2015px%2030px;%20font-size:%2020px;%20cursor:%20pointer;%20background:%20%238b5cf6;%20color:%20%23fff;%20border:%20none;%20border-radius:%208px;%20%7D%3C/style%3E%3Cscript%20src=%27https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js%27%3E%3C/script%3E%3C/head%3E%3Cbody%3E%3Cbutton%20onclick=%27launchConfetti()%27%3ELaunch!%3C/button%3E%3Cscript%3Efunction%20launchConfetti()%20%7Bconst%20count%20=%20200;const%20defaults%20=%20%7B%20origin:%20%7B%20y:%200.7%20%7D%20%7D;function%20fire(particleRatio,%20opts)%20%7Bconfetti(%7B%20...defaults,%20...opts,%20particleCount:%20Math.floor(count%20*%20particleRatio)%20%7D);%7D;fire(0.25,%20%7B%20spread:%2026,%20startVelocity:%2055%20%7D);fire(0.2,%20%7B%20spread:%2060%20%7D);fire(0.35,%20%7B%20spread:%20100,%20decay:%200.91,%20scalar:%200.8%20%7D);fire(0.1,%20%7B%20spread:%20120,%20startVelocity:%2025,%20decay:%200.92,%20scalar:%201.2%20%7D);fire(0.1,%20%7B%20spread:%20120,%20startVelocity:%2045%20%7D);%7D%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>15. Draggable Element</h3><p>A highly reusable utility to make any HTML element draggable. This demonstrates listening to mouse down, move, and up events to manage state.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">makeDraggable</span>(element) {
+    <span class="keyword">let</span> isDragging = <span class="keyword">false</span>, offsetX, offsetY;
+    element.<span class="func">addEventListener</span>(<span class="string">'mousedown'</span>, (e) => {
+        isDragging = <span class="keyword">true</span>;
+        offsetX = e.clientX - element.offsetLeft;
+        offsetY = e.clientY - element.offsetTop;
+        element.style.cursor = <span class="string">'grabbing'</span>;
+    });
+    document.<span class="func">addEventListener</span>(<span class="string">'mousemove'</span>, (e) => {
+        <span class="keyword">if</span> (!isDragging) <span class="keyword">return</span>;
+        element.style.left = `${e.clientX - offsetX}px`;
+        element.style.top = `${e.clientY - offsetY}px`;
+    });
+    document.<span class="func">addEventListener</span>(<span class="string">'mouseup'</span>, () => {
+        isDragging = <span class="keyword">false</span>;
+        element.style.cursor = <span class="string">'grab'</span>;
+    });
+}
+<span class="comment">// --- CSS & HTML Required ---</span>
+<span class="comment">// #draggable { position: absolute; cursor: grab; ... }</span>
+<span class="func">makeDraggable</span>(document.<span class="func">getElementById</span>(<span class="string">'draggable'</span>));</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%20%7B%20overflow:%20hidden;%20background:%20%231f2937;%20%7D%20%23draggable%20%7B%20position:%20absolute;%20top:%2040%25;%20left:%2035%25;%20width:%20100px;%20height:%20100px;%20background:%20%235e81f2;%20color:%20white;%20display:%20flex;%20align-items:%20center;%20justify-content:%20center;%20border-radius:%2050%25;%20cursor:%20grab;%20user-select:%20none;%20font-family:%20sans-serif;%20%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%27draggable%27%3EDrag%20Me%3C/div%3E%3Cscript%3Efunction%20makeDraggable(element)%20%7Blet%20isDragging%20=%20false,%20offsetX,%20offsetY;element.addEventListener(%27mousedown%27,%20(e)%20=%3E%20%7BisDragging%20=%20true;offsetX%20=%20e.clientX%20-%20element.offsetLeft;offsetY%20=%20e.clientY%20-%20element.offsetTop;element.style.cursor%20=%20%27grabbing%27;%7D);document.addEventListener(%27mousemove%27,%20(e)%20=%3E%20%7Bif%20(!isDragging)%20return;element.style.left%20=%20%60%24%7Be.clientX%20-%20offsetX%7Dpx%60;element.style.top%20=%20%60%24%7Be.clientY%20-%20offsetY%7Dpx%60;%7D);document.addEventListener(%27mouseup%27,%20()%20=%3E%20%7BisDragging%20=%20false;element.style.cursor%20=%20%27grab%27;%7D);%7D;makeDraggable(document.getElementById(%27draggable%27));%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>16. Throttle Function</h3><p>Similar to debounce, but throttle guarantees execution of the function regularly, at most once every X milliseconds. Perfect for handling scroll or mouse-move events without overwhelming the browser.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">throttle</span> = (func, limit) => {
+    <span class="keyword">let</span> inThrottle;
+    <span class="keyword">return</span> <span class="keyword">function</span>(...args) {
+        <span class="keyword">const</span> context = <span class="keyword">this</span>;
+        <span class="keyword">if</span> (!inThrottle) {
+            func.<span class="func">apply</span>(context, args);
+            inThrottle = <span class="keyword">true</span>;
+            <span class="func">setTimeout</span>(() => inThrottle = <span class="keyword">false</span>, limit);
+        }
+    };
+};
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> throttledFunc = <span class="func">throttle</span>(() => {
+    console.<span class="func">log</span>(<span class="string">'Function throttled at 1000ms!'</span>);
+}, <span class="number">1000</span>);
+window.<span class="func">addEventListener</span>(<span class="string">'scroll'</span>, throttledFunc);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Preview not applicable. <br>This utility's effect is best seen by observing console logs while performing an action like scrolling.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>17. Async Sleep Function</h3><p>A simple yet powerful helper that pauses execution in an `async` function for a specified duration. Cleaner and more readable than using `setTimeout` for delays in sequential asynchronous tasks.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">sleep</span> = (ms) => <span class="keyword">new</span> <span class="func-name">Promise</span>(resolve => <span class="func">setTimeout</span>(resolve, ms));
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">async function</span> <span class="func-name">showMessages</span>() {
+    <span class="keyword">const</span> output = document.<span class="func">getElementById</span>(<span class="string">'status'</span>);
+    output.textContent = <span class="string">'Starting...'</span>;
+    <span class="keyword">await</span> <span class="func">sleep</span>(<span class="number">2000</span>);
+    output.textContent = <span class="string">'Processing... (Slept for 2s)'</span>;
+    <span class="keyword">await</span> <span class="func">sleep</span>(<span class="number">3000</span>);
+    output.textContent = <span class="string">'Complete! (Slept for 3s)'</span>;
+}
+<span class="func">showMessages</span>();</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff%7D%23status%7Bfont-family:monospace;font-size:20px%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%27status%27%3E%3C/div%3E%3Cscript%3Econst%20sleep%20=%20(ms)%20=%3E%20new%20Promise(resolve%20=%3E%20setTimeout(resolve,%20ms));async%20function%20showMessages()%7Bconst%20output%20=%20document.getElementById(%27status%27);output.textContent%20=%20%27Starting...%27;await%20sleep(2000);output.textContent%20=%20%27Processing...%20(Slept%20for%202s)%27;await%20sleep(3000);output.textContent%20=%20%27Complete!%20(Slept%20for%203s)%27%7D;showMessages();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>18. Shuffle an Array</h3><p>A classic and essential algorithm. This function shuffles an array in-place using the Fisher-Yates (aka Knuth) shuffle algorithm, which provides an unbiased permutation.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">shuffleArray</span>(array) {
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = array.length - <span class="number">1</span>; i > <span class="number">0</span>; i--) {
+        <span class="keyword">const</span> j = Math.<span class="func">floor</span>(Math.<span class="func">random</span>() * (i + <span class="number">1</span>));
+        [array[i], array[j]] = [array[j], array[i]]; <span class="comment">// ES6 swap</span>
+    }
+    <span class="keyword">return</span> array;
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> emojis = [<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>, <span class="string">'浪'</span>, <span class="string">''</span>, <span class="string">''</span>];
+<span class="func">shuffleArray</span>(emojis);
+console.<span class="func">log</span>(emojis);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff;font-family:sans-serif%7D%23output%7Bfont-size:3rem;margin-bottom:1rem%7Dbutton%7Bpadding:10px%2015px;cursor:pointer%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%27output%27%3E%3C/div%3E%3Cbutton%20id=%27shuffleBtn%27%3EShuffle%3C/button%3E%3Cscript%3Efunction%20shuffleArray(array)%7Bfor(let%20i=array.length-1;i%3E0;i--)%7Bconst%20j=Math.floor(Math.random()*(i+1));%5Barray%5Bi%5D,array%5Bj%5D%5D=%5Barray%5Bj%5D,array%5Bi%5D%5D%7D;return%20array%7D;const%20output=document.getElementById(%27output%27);const%20btn=document.getElementById(%27shuffleBtn%27);const%20emojis=%5B%27%F0%9F%98%80%27,%27%F0%9F%98%82%27,%27%F0%9F%98%8E%27,%27%F0%9F%A4%A2%27,%27%F0%9F%92%A9%27,%27%F0%9F%9A%80%27%5D;const%20render=()=%3E%7Boutput.textContent=shuffleArray(%5B...emojis%5D).join(%27%20%27)%7D;btn.addEventListener(%27click%27,render);render();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>19. Is Element In Viewport?</h3><p>A crucial function for performance optimizations like lazy loading images or triggering animations only when an element scrolls into view. It uses the modern `IntersectionObserver` for efficiency.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">onElementInView</span>(element, callback, options = { threshold: <span class="number">0.1</span> }) {
+    <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="func-name">IntersectionObserver</span>((entries, observer) => {
+        entries.<span class="func">forEach</span>(entry => {
+            <span class="keyword">if</span> (entry.isIntersecting) {
+                <span class="func">callback</span>(entry.target);
+                <span class="comment">// Optional: stop observing once it has been seen</span>
+                observer.<span class="func">unobserve</span>(entry.target);
+            }
+        });
+    }, options);
+    observer.<span class="func">observe</span>(element);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> myElement = document.<span class="func">getElementById</span>(<span class="string">'lazy-load-div'</span>);
+<span class="func">onElementInView</span>(myElement, (el) => {
+    el.textContent = <span class="string">'I am in view!'</span>;
+    el.style.backgroundColor = <span class="string">'#8b5cf6'</span>;
+});</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>This function is best demonstrated on a long, scrollable page. The logic is used on the Shane Studios homepage to animate cards into view.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>20. 3D Tilting Card Effect</h3><p>A very popular and stylish UI effect. This snippet uses CSS custom properties and JavaScript to make a card tilt in 3D space based on the mouse position over it.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="comment">// HTML: <div class="tilt-card">...</div></span>
+<span class="comment">// CSS: .tilt-card { transform: perspective(1000px) ... }</span>
+<span class="keyword">const</span> card = document.<span class="func">querySelector</span>(<span class="string">'.tilt-card'</span>);
+card.<span class="func">addEventListener</span>(<span class="string">'mousemove'</span>, (e) => {
+    <span class="keyword">const</span> { top, left, width, height } = card.<span class="func">getBoundingClientRect</span>();
+    <span class="keyword">const</span> x = e.clientX - left;
+    <span class="keyword">const</span> y = e.clientY - top;
+    <span class="keyword">const</span> midX = width / <span class="number">2</span>;
+    <span class="keyword">const</span> midY = height / <span class="number">2</span>;
+    <span class="keyword">const</span> rotateX = (y - midY) / <span class="number">7</span>;
+    <span class="keyword">const</span> rotateY = (x - midX) / -<span class="number">7</span>;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
+card.<span class="func">addEventListener</span>(<span class="string">'mouseleave'</span>, () => {
+    card.style.transform = <span class="string">'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'</span>;
+});</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:grid;place-content:center;height:100vh;margin:0;background:%23111827%7D.tilt-card%7Bwidth:200px;height:200px;background:%235e81f2;border-radius:15px;color:white;display:grid;place-content:center;font-family:sans-serif;font-size:1.5rem;transition:transform%20.1s%20ease%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20class=%22tilt-card%22%3ETilt%20Me%3C/div%3E%3Cscript%3Econst%20card=document.querySelector(%27.tilt-card%27);card.addEventListener(%27mousemove%27,e=%3E%7Bconst%7Btop,left,width,height%7D=card.getBoundingClientRect();const%20x=e.clientX-left;const%20y=e.clientY-top;const%20midX=width/2;const%20midY=height/2;const%20rotateX=(y-midY)/7;const%20rotateY=(x-midX)/-7;card.style.transform=%60perspective(1000px)rotateX(%24%7BrotateX%7Ddeg)rotateY(%24%7BrotateY%7Ddeg)scale(1.05)%60%7D);card.addEventListener(%27mouseleave%27,()=%3E%7Bcard.style.transform=%27perspective(1000px)rotateX(0deg)rotateY(0deg)scale(1)%27%7D);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>21. Water Ripple Click Effect</h3><p>An impressive visual effect that creates a "water ripple" originating from the user's click location on an element, using a dynamically created and animated element.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">applyRippleEffect</span>(element) {
+    element.<span class="func">addEventListener</span>(<span class="string">'click'</span>, <span class="keyword">function</span>(e) {
+        <span class="keyword">const</span> rect = element.<span class="func">getBoundingClientRect</span>();
+        <span class="keyword">const</span> ripple = document.<span class="func">createElement</span>(<span class="string">'span'</span>);
+        <span class="keyword">const</span> diameter = Math.<span class="func">max</span>(element.clientWidth, element.clientHeight);
+        <span class="keyword">const</span> radius = diameter / <span class="number">2</span>;
+        ripple.style.width = ripple.style.height = `${diameter}px`;
+        ripple.style.left = `${e.clientX - rect.left - radius}px`;
+        ripple.style.top = `${e.clientY - rect.top - radius}px`;
+        ripple.classList.<span class="func">add</span>(<span class="string">'ripple'</span>);
+        <span class="keyword">const</span> existingRipple = element.<span class="func">getElementsByClassName</span>(<span class="string">'ripple'</span>)[<span class="number">0</span>];
+        <span class="keyword">if</span> (existingRipple) {
+            existingRipple.<span class="func">remove</span>();
+        }
+        element.<span class="func">appendChild</span>(ripple);
+    });
+}
+<span class="comment">// --- CSS Required ---</span>
+<span class="comment">// .ripple-container { position: relative; overflow: hidden; }</span>
+<span class="comment">// .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.7); transform: scale(0); animation: ripple .6s linear; }</span>
+<span class="comment">// @keyframes ripple { to { transform: scale(4); opacity: 0; } }</span></code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:grid;place-content:center;height:100vh;margin:0;background:%23111827%7D.ripple-container%7Bposition:relative;overflow:hidden;width:250px;height:150px;background:%238b5cf6;color:white;display:grid;place-content:center;font-family:sans-serif;font-size:1.5rem;border-radius:10px;cursor:pointer%7D.ripple%7Bposition:absolute;border-radius:50%25;background:rgba(255,255,255,0.7);transform:scale(0);animation:ripple%20.6s%20linear%7D@keyframes%20ripple%7Bto%7Btransform:scale(4);opacity:0%7D%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20class=%22ripple-container%22%3EClick%20Me%3C/div%3E%3Cscript%3Efunction%20applyRippleEffect(element)%7Belement.addEventListener(%27click%27,function(e)%7Bconst%20rect=element.getBoundingClientRect();const%20ripple=document.createElement(%27span%27);const%20diameter=Math.max(element.clientWidth,element.clientHeight);const%20radius=diameter/2;ripple.style.width=ripple.style.height=%60%24%7Bdiameter%7Dpx%60;ripple.style.left=%60%24%7Be.clientX-rect.left-radius%7Dpx%60;ripple.style.top=%60%24%7Be.clientY-rect.top-radius%7Dpx%60;ripple.classList.add(%27ripple%27);const%20existingRipple=element.getElementsByClassName(%27ripple%27)%5B0%5D;if(existingRipple)%7BexistingRipple.remove()%7Delement.appendChild(ripple)%7D)%7D;applyRippleEffect(document.querySelector(%27.ripple-container%27));%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>22. Detect Mobile Device</h3><p>A simple but effective check to determine if the user is on a mobile device. It tests for touch events and checks the user agent string for common mobile keywords.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">isMobile</span>() {
+    <span class="keyword">let</span> hasTouch = <span class="keyword">false</span>;
+    <span class="keyword">try</span> {
+        document.<span class="func">createEvent</span>(<span class="string">'TouchEvent'</span>);
+        hasTouch = <span class="keyword">true</span>;
+    } <span class="keyword">catch</span> (e) {
+        hasTouch = <span class="keyword">false</span>;
+    }
+    <span class="keyword">const</span> userAgentCheck = <span class="keyword">/</span>Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini<span class="keyword">/i</span>;
+    <span class="keyword">return</span> hasTouch || userAgentCheck.<span class="func">test</span>(navigator.userAgent);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> statusDiv = document.<span class="func">getElementById</span>(<span class="string">'device-status'</span>);
+<span class="keyword">if</span> (<span class="func">isMobile</span>()) {
+    statusDiv.textContent = <span class="string">'Device: Mobile'</span>;
+} <span class="keyword">else</span> {
+    statusDiv.textContent = <span class="string">'Device: Desktop'</span>;
+}</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:grid;place-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff%7D%23device-status%7Bfont-family:monospace;font-size:2rem;text-align:center%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%22device-status%22%3E%3C/div%3E%3Cscript%3Efunction%20isMobile()%7Blet%20hasTouch=false;try%7Bdocument.createEvent(%27TouchEvent%27);hasTouch=true%7Dcatch(e)%7BhasTouch=false%7D;const%20userAgentCheck=/Android%7CwebOS%7CiPhone%7CiPad%7CiPod%7CBlackBerry%7CIEMobile%7COpera%20Mini/i;return%20hasTouch%7C%7CuserAgentCheck.test(navigator.userAgent)%7D;const%20statusDiv=document.getElementById(%27device-status%27);if(isMobile())%7BstatusDiv.textContent=%27Device:%20Mobile%27%7Delse%7BstatusDiv.textContent=%27Device:%20Desktop%27%7D;%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>23. Cookie Management Functions</h3><p>The classic trio of functions for managing browser cookies: `setCookie`, `getCookie`, and `deleteCookie`. Essential for tasks that require simple, client-side persistence.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">setCookie</span>(name, value, days) {
+    <span class="keyword">let</span> expires = <span class="string">""</span>;
+    <span class="keyword">if</span> (days) {
+        <span class="keyword">const</span> date = <span class="keyword">new</span> <span class="func-name">Date</span>();
+        date.<span class="func">setTime</span>(date.<span class="func">getTime</span>() + (days * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>));
+        expires = <span class="string">"; expires="</span> + date.<span class="func">toUTCString</span>();
+    }
+    document.cookie = name + <span class="string">"="</span> + (value || <span class="string">""</span>) + expires + <span class="string">"; path=/"</span>;
+}
+<span class="keyword">function</span> <span class="func-name">getCookie</span>(name) {
+    <span class="keyword">const</span> nameEQ = name + <span class="string">"="</span>;
+    <span class="keyword">const</span> ca = document.cookie.<span class="func">split</span>(<span class="string">';'</span>);
+    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i < ca.length; i++) {
+        <span class="keyword">let</span> c = ca[i];
+        <span class="keyword">while</span> (c.<span class="func">charAt</span>(<span class="number">0</span>) === <span class="string">' '</span>) c = c.<span class="func">substring</span>(<span class="number">1</span>, c.length);
+        <span class="keyword">if</span> (c.<span class="func">indexOf</span>(nameEQ) === <span class="number">0</span>) <span class="keyword">return</span> c.<span class="func">substring</span>(nameEQ.length, c.length);
+    }
+    <span class="keyword">return</span> <span class="keyword">null</span>;
+}
+<span class="keyword">function</span> <span class="func-name">deleteCookie</span>(name) {   
+    document.cookie = name +<span class="string">'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'</span>;
+}</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Cookie operations affect the entire document and are best tested on a live page rather than a sandboxed iframe.</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>24. Format Number as Currency</h3><p>A very practical function that uses the powerful `Intl.NumberFormat` API to correctly format a number as currency for a specific locale, including the correct currency symbol.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">formatAsCurrency</span>(number, locale = <span class="string">'en-US'</span>, currency = <span class="string">'USD'</span>) {
+    <span class="keyword">return new</span> <span class="func-name">Intl.NumberFormat</span>(locale, {
+        style: <span class="string">'currency'</span>,
+        currency: currency,
+    }).<span class="func">format</span>(number);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> price1 = <span class="func">formatAsCurrency</span>(<span class="number">12345.67</span>); <span class="comment">// $12,345.67</span>
+<span class="keyword">const</span> price2 = <span class="func">formatAsCurrency</span>(<span class="number">12345.67</span>, <span class="string">'de-DE'</span>, <span class="string">'EUR'</span>); <span class="comment">// 12.345,67 €</span>
+<span class="keyword">const</span> price3 = <span class="func">formatAsCurrency</span>(<span class="number">12345.67</span>, <span class="string">'ja-JP'</span>, <span class="string">'JPY'</span>); <span class="comment">// ￥12,346</span>
+console.<span class="func">log</span>(price1, price2, price3);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff%7D%23output%7Bfont-family:monospace;font-size:1.5rem;line-height:2%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%22output%22%3E%3C/div%3E%3Cscript%3Efunction%20formatAsCurrency(number,locale=%27en-US%27,currency=%27USD%27)%7Breturn%20new%20Intl.NumberFormat(locale,%7Bstyle:%27currency%27,currency:currency%7D).format(number)%7D;const%20p1=formatAsCurrency(12345.67);const%20p2=formatAsCurrency(12345.67,%27de-DE%27,%27EUR%27);const%20p3=formatAsCurrency(12345.67,%27ja-JP%27,%27JPY%27);document.getElementById(%27output%27).innerHTML=%60%24%7Bp1%7D%3Cbr%3E%24%7Bp2%7D%3Cbr%3E%24%7Bp3%7D%60%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>25. Mouse-Tracking Gradient Glow</h3><p>A sleek, modern effect that sets a radial gradient on an element's background that follows the user's mouse, creating a "spotlight" or "glow" effect.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="comment">// HTML: <div class="glow-card">...</div></span>
+<span class="keyword">const</span> cards = document.<span class="func">querySelectorAll</span>(<span class="string">'.glow-card'</span>);
+cards.<span class="func">forEach</span>(card => {
+    card.<span class="func">addEventListener</span>(<span class="string">'mousemove'</span>, e => {
+        <span class="keyword">const</span> rect = card.<span class="func">getBoundingClientRect</span>();
+        <span class="keyword">const</span> x = e.clientX - rect.left;
+        <span class="keyword">const</span> y = e.clientY - rect.top;
+        card.style.setProperty(<span class="string">'--mouse-x'</span>, `${x}px`);
+        card.style.setProperty(<span class="string">'--mouse-y'</span>, `${y}px`);
+    });
+});
+<span class="comment">// --- CSS Required ---</span>
+<span class="comment">// .glow-card::before { content: ''; ... background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), ...); }</span></code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:grid;place-items:center;height:100vh;margin:0;background:%23111827%7D.glow-card%7Bposition:relative;width:300px;height:150px;background:%231f2937;border-radius:10px;padding:2px%7D.glow-card%3E.content%7Bbackground:%231f2937;color:white;width:100%25;height:100%25;border-radius:8px;display:grid;place-items:center;font-family:sans-serif%7D.glow-card::before%7Bcontent:%27%27;position:absolute;inset:-2px;background:radial-gradient(400px%20circle%20at%20var(--mouse-x)%20var(--mouse-y),rgba(94,129,242,0.8),transparent%2040%25);border-radius:12px;z-index:-1%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20class=%22glow-card%22%3E%3Cdiv%20class=%22content%22%3EMove%20mouse%20over%20me%3C/div%3E%3C/div%3E%3Cscript%3Edocument.querySelector(%27.glow-card%27).addEventListener(%27mousemove%27,e=%3E%7Bconst%20rect=e.currentTarget.getBoundingClientRect();const%20x=e.clientX-rect.left;const%20y=e.clientY-rect.top;e.currentTarget.style.setProperty(%27--mouse-x%27,%60%24%7Bx%7Dpx%60);e.currentTarget.style.setProperty(%27--mouse-y%27,%60%24%7By%7Dpx%60)%7D);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>26. Copy Text to Clipboard Function</h3><p>A self-contained async function that copies any given text to the clipboard using the modern, secure `navigator.clipboard` API. It returns a promise that resolves on success and rejects on failure.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">async function</span> <span class="func-name">copyToClipboard</span>(text) {
+    <span class="keyword">if</span> (!navigator.clipboard) {
+        <span class="comment">// Fallback for older browsers</span>
+        <span class="keyword">const</span> textArea = document.<span class="func">createElement</span>(<span class="string">"textarea"</span>);
+        textArea.value = text;
+        textArea.style.position = <span class="string">"fixed"</span>; <span class="comment">// Avoid scrolling to bottom</span>
+        document.body.<span class="func">appendChild</span>(textArea);
+        textArea.<span class="func">focus</span>();
+        textArea.<span class="func">select</span>();
+        <span class="keyword">try</span> {
+            document.<span class="func">execCommand</span>(<span class="string">'copy'</span>);
+            document.body.<span class="func">removeChild</span>(textArea);
+            <span class="keyword">return</span> Promise.<span class="func">resolve</span>();
+        } <span class="keyword">catch</span> (err) {
+            document.body.<span class="func">removeChild</span>(textArea);
+            <span class="keyword">return</span> Promise.<span class="func">reject</span>(err);
+        }
+    }
+    <span class="keyword">return</span> navigator.clipboard.<span class="func">writeText</span>(text);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="func">copyToClipboard</span>(<span class="string">'Hello from Shane Studios!'</span>)
+    .<span class="func">then</span>(() => console.<span class="func">log</span>(<span class="string">'Copied successfully!'</span>))
+    .<span class="func">catch</span>(() => console.<span class="func">error</span>(<span class="string">'Failed to copy.'</span>));</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>Preview not applicable. <br>This is a utility function used by the "Copy" buttons on this very page!</div></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>27. Get Random Array Element</h3><p>A fundamental and frequently needed utility. This one-liner function returns a random element from any given array.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> <span class="func-name">getRandomElement</span> = (arr) => arr[Math.<span class="func">floor</span>(Math.<span class="func">random</span>() * arr.length)];
+<span class="comment">// --- Example Usage ---</span>
+<span class="keyword">const</span> choices = [<span class="string">'Rock'</span>, <span class="string">'Paper'</span>, <span class="string">'Scissors'</span>];
+<span class="keyword">const</span> randomChoice = <span class="func">getRandomElement</span>(choices);
+console.<span class="func">log</span>(randomChoice); <span class="comment">// Logs one of the three choices</span>
+
+<span class="keyword">const</span> colors = [<span class="string">'#5e81f2'</span>, <span class="string">'#8b5cf6'</span>, <span class="string">'#f87171'</span>, <span class="string">'#4ade80'</span>];
+document.body.style.backgroundColor = <span class="func">getRandomElement</span>(colors);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff;font-family:sans-serif%7D%23output%7Bfont-size:3rem;margin-bottom:1rem;font-weight:bold%7Dbutton%7Bpadding:10px%2015px;cursor:pointer%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20id=%22output%22%3E%3C/div%3E%3Cbutton%20id=%22btn%22%3EGet%20Random%20Fruit%3C/button%3E%3Cscript%3Econst%20getRandomElement=(arr)=%3Earr%5BMath.floor(Math.random()*arr.length)%5D;const%20output=document.getElementById(%27output%27);const%20btn=document.getElementById(%27btn%27);const%20fruits=%5B%27%F0%9F%8D%8E%27,%27%F0%9F%8D%8A%27,%27%F0%9F%8D%89%27,%27%F0%9F%8D%93%27,%27%F0%9F%8D%87%27%5D;const%20render=()=%3Eoutput.textContent=getRandomElement(fruits);btn.addEventListener(%27click%27,render);render();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>28. Online/Offline Status Detector</h3><p>Useful for modern web apps (especially PWAs) that need to behave differently when the user loses their internet connection. This snippet uses built-in browser events to detect connectivity changes.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">const</span> statusEl = document.<span class="func">getElementById</span>(<span class="string">'connection-status'</span>);
+<span class="keyword">const</span> <span class="func-name">updateOnlineStatus</span> = () => {
+    <span class="keyword">const</span> isOnline = navigator.onLine;
+    statusEl.textContent = isOnline ? <span class="string">'Status: Online'</span> : <span class="string">'Status: Offline'</span>;
+    statusEl.style.color = isOnline ? <span class="string">'#4ade80'</span> : <span class="string">'#f87171'</span>;
+};
+window.<span class="func">addEventListener</span>(<span class="string">'online'</span>, updateOnlineStatus);
+window.<span class="func">addEventListener</span>(<span class="string">'offline'</span>, updateOnlineStatus);
+<span class="comment">// Initial check</span>
+<span class="func">updateOnlineStatus</span>();</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bdisplay:grid;place-content:center;height:100vh;margin:0;background:%231f2937;color:%23fff;text-align:center%7D%23connection-status%7Bfont-family:monospace;font-size:1.5rem%7Dsmall%7Bmargin-top:1rem;display:block;color:%239ca3af%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%3E%3Cdiv%20id=%22connection-status%22%3E%3C/div%3E%3Csmall%3ETry%20toggling%20your%20Wi-Fi%20or%20using%20DevTools%27%20offline%20mode.%3C/small%3E%3C/div%3E%3Cscript%3Econst%20statusEl=document.getElementById(%27connection-status%27);const%20updateOnlineStatus=()=%3E%7Bconst%20isOnline=navigator.onLine;statusEl.textContent=isOnline?%27Status:%20Online%27:%27Status:%20Offline%27;statusEl.style.color=isOnline?%27%234ade80%27:%27%23f87171%27%7D;window.addEventListener(%27online%27,updateOnlineStatus);window.addEventListener(%27offline%27,updateOnlineStatus);updateOnlineStatus();%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>29. Text Reveal on Scroll</h3><p>A stylish effect where lines of text are revealed one by one as the user scrolls down the page. This uses `IntersectionObserver` to trigger the animation on a parent container.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="comment">// HTML: <div class="text-reveal-container"><p>Line 1</p><p>Line 2</p>...</div></span>
+<span class="comment">// CSS: .text-reveal-container p { transform: translateY(100%); opacity: 0; transition: ... }</span>
+<span class="comment">//      .text-reveal-container.in-view p { transform: translateY(0); opacity: 1; }</span>
+<span class="keyword">const</span> container = document.<span class="func">querySelector</span>(<span class="string">'.text-reveal-container'</span>);
+<span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="func-name">IntersectionObserver</span>((entries) => {
+    entries.<span class="func">forEach</span>(entry => {
+        <span class="keyword">if</span> (entry.isIntersecting) {
+            entry.target.classList.<span class="func">add</span>(<span class="string">'in-view'</span>);
+        }
+    });
+}, { threshold: <span class="number">0.5</span> });
+observer.<span class="func">observe</span>(container);</code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><iframe src="data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%3E%3Chead%3E%3Cstyle%3Ebody%7Bmargin:0;font-family:sans-serif;background:%23111827%7D.spacer%7Bheight:100vh;display:grid;place-content:center;color:%239ca3af%7D.text-reveal-container%7Bcolor:white;font-size:2rem;font-weight:bold;padding:10vh%200%7D.text-reveal-container%20p%7Btransform:translateY(100%25);opacity:0;transition:transform%20.8s%20ease,opacity%20.8s%20ease%7D.text-reveal-container.in-view%20p:nth-child(1)%7Btransition-delay:.1s%7D.text-reveal-container.in-view%20p:nth-child(2)%7Btransition-delay:.2s%7D.text-reveal-container.in-view%20p:nth-child(3)%7Btransition-delay:.3s%7D.text-reveal-container.in-view%20p%7Btransform:translateY(0);opacity:1%7D%3C/style%3E%3C/head%3E%3Cbody%3E%3Cdiv%20class=%22spacer%22%3EScroll%20Down%3C/div%3E%3Cdiv%20class=%22text-reveal-container%22%3E%3Cp%3EFirst%20this%20line%20appears.%3C/p%3E%3Cp%3EThen%20this%20one.%3C/p%3E%3Cp%3EAnd%20finally,%20this%20one.%3C/p%3E%3C/div%3E%3Cdiv%20class=%22spacer%22%3EScroll%20Back%20Up%3C/div%3E%3Cscript%3Econst%20c=document.querySelector(%27.text-reveal-container%27);const%20o=new%20IntersectionObserver(e=%3E%7Be.forEach(n=%3E%7Bn.isIntersecting%26%26n.target.classList.add(%27in-view%27)%7D)%7D,%7Bthreshold:.5%7D);o.observe(c);%3C/script%3E%3C/body%3E%3C/html%3E"></iframe></div>
+                </div>
+                <div class="snippet-card">
+                    <div class="snippet-header"><h3>30. Page Fade-Out Prank</h3><p>A simple but effective prank to play on colleagues. This function slowly fades the entire page to black over a long period, making the user think their screen is failing.</p></div>
+                    <div class="code-container"><button class="copy-btn" aria-label="Copy Code"><i class="fas fa-copy"></i> Copy</button><pre><code><span class="keyword">function</span> <span class="func-name">gentleFadeToBlack</span>(durationInSeconds = <span class="number">60</span>) {
+    <span class="keyword">const</span> overlay = document.<span class="func">createElement</span>(<span class="string">'div'</span>);
+    overlay.style.position = <span class="string">'fixed'</span>;
+    overlay.style.top = <span class="string">'0'</span>;
+    overlay.style.left = <span class="string">'0'</span>;
+    overlay.style.width = <span class="string">'100vw'</span>;
+    overlay.style.height = <span class="string">'100vh'</span>;
+    overlay.style.backgroundColor = <span class="string">'black'</span>;
+    overlay.style.opacity = <span class="string">'0'</span>;
+    overlay.style.zIndex = <span class="string">'999999'</span>;
+    overlay.style.pointerEvents = <span class="string">'none'</span>; <span class="comment">// So it doesn't block clicks initially</span>
+    overlay.style.transition = `opacity ${durationInSeconds}s linear`;
+    document.body.<span class="func">appendChild</span>(overlay);
+    <span class="comment">// The timeout ensures the transition property is applied before we change opacity</span>
+    <span class="func">setTimeout</span>(() => {
+        overlay.style.opacity = <span class="string">'1'</span>;
+    }, <span class="number">50</span>);
+}
+<span class="comment">// --- Example Usage ---</span>
+<span class="comment">// Call this from the console to prank someone!</span>
+<span class="comment">// gentleFadeToBlack(300); // Fades out over 5 minutes</span></code></pre></div>
+                    <div class="preview-container"><h4>Live Preview</h4><div class="preview-note"><i class="fas fa-info-circle"></i>This prank is best executed from the console on an unsuspecting friend's machine. A live preview would spoil the fun!</div></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+    <script src="snippets.js"></script>
+</body>
+</html>
