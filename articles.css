@@ -1,0 +1,163 @@
+/* articles.css - Styles for the main articles list page */
+
+.articles-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    padding: 0 5%;
+}
+
+.articles-intro h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    letter-spacing: -1px;
+}
+
+.articles-intro p {
+    font-size: 1.1rem;
+    color: var(--text-muted-color);
+    line-height: 1.7;
+}
+
+/* --- Filter controls styling --- */
+.filter-controls {
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--text-muted-color);
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    font-size: 1rem;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.theme-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    color: var(--text-color);
+    border-color: var(--text-muted-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* --- Article list styling --- */
+#article-list-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loading-message, .no-results-message {
+    color: var(--text-muted-color);
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 2rem;
+}
+
+.article-list-item {
+    display: block;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-list-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.article-list-item h2 {
+    font-size: 1.7rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.article-list-item .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.article-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: var(--border-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
