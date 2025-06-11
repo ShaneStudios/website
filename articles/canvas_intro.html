@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Coding with HTML5 Canvas - Shane Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="article_base.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul>
+            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="../ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
+            <li><a href="../projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="../snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
+            <li><a href="../articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="../community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="../about.html"><i class="fas fa-user-circle"></i> About Shane</a></li>
+            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="../reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="logged-in-item"><a href="../account.html" data-requires-login="true"><i class="fas fa-user-cog"></i> Account</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="../login.html" class="logged-out-item">Log In</a>
+            <a href="../signup.html" class="logged-out-item">Sign Up</a>
+            <a href="#" class="logged-in-item" id="logout-link">Log Out</a>
+        </div>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Article</span>
+        </header>
+        <main>
+            <div class="breadcrumb-container">
+                <nav aria-label="Breadcrumb" class="breadcrumb">
+                    <ol>
+                        <li><a href="../articles.html">Articles</a></li>
+                        <li><a href="#" class="breadcrumb-theme-link" data-theme="Creative Coding">Creative Coding</a></li>
+                        <li><span aria-current="page">Creative Coding with HTML5 Canvas</span></li>
+                    </ol>
+                </nav>
+            </div>
+            <article class="article-body">
+                <header class="article-header">
+                    <h1>Creative Coding with HTML5 Canvas</h1>
+                    <div class="article-byline"><span>By Shane Studios</span> | <span>Published on June 9, 2025</span></div>
+                </header>
+                <div class="article-content">
+                    <p>Beyond building forms and layouts, the web is a powerful platform for creating visual art, animations, and interactive experiences. The cornerstone of this creative potential is the HTML5 <code><canvas></code> element. It provides a blank, pixel-based drawing surface that you can control entirely with JavaScript, opening a gateway to a world of creative coding.</p>
+                    <p>This guide will walk you through the fundamentals, from setting up the canvas to drawing shapes and creating your first animation.</p>
+
+                    <h2>1. Setting Up Your Canvas</h2>
+                    <p>Getting started is remarkably simple. First, you need a <code><canvas></code> element in your HTML. It's crucial to give it a unique `id` so you can select it with JavaScript, and to set its `width` and `height` attributes directly. Styling the width and height with CSS can cause the drawing to become stretched or blurry.</p>
+                    <pre><code><!-- In your HTML file -->
+<canvas id="myCreativeCanvas" width="800" height="450">
+  <!-- Fallback content for older browsers -->
+  Your browser does not support the HTML5 canvas tag.
+</canvas></code></pre>
+                    <p>Next, in your JavaScript, you grab a reference to this element and, most importantly, its "drawing context." For 2D graphics, we request the `2d` context. This context object is what holds all the methods and properties for drawing.</p>
+                    <pre><code><span class="keyword">const</span> canvas = document.<span class="func">getElementById</span>(<span class="string">'myCreativeCanvas'</span>);
+<span class="keyword">const</span> ctx = canvas.<span class="func">getContext</span>(<span class="string">'2d'</span>);
+
+<span class="comment">// Now, `ctx` is your digital paintbrush!</span></code></pre>
+
+                    <h2>2. Understanding the Coordinate System</h2>
+                    <p>The canvas uses a simple grid system. The point (0, 0) is at the **top-left corner**. The x-axis increases to the right, and the y-axis increases downwards. This is important to remember, as it differs from the Cartesian coordinate system you may have learned in math class, where the y-axis increases upwards.</p>
+                    <img src="https://i.imgur.com/uS2hV47.png" alt="Diagram of the HTML Canvas coordinate system" style="background:white; padding: 1rem;">
+                    
+                    <h2>3. Drawing Basic Shapes</h2>
+                    <p>The 2D context has a rich set of methods for drawing. Let's look at a few fundamental ones. All drawing operations use the current `fillStyle` (for filled shapes) and `strokeStyle` (for outlines).</p>
+                    
+                    <h3>Rectangles</h3>
+                    <p>Rectangles are the simplest shape to draw. There are three main methods:</p>
+                    <ul>
+                        <li><strong>`fillRect(x, y, width, height)`</strong>: Draws a filled rectangle.</li>
+                        <li><strong>`strokeRect(x, y, width, height)`</strong>: Draws a rectangular outline.</li>
+                        <li><strong>`clearRect(x, y, width, height)`</strong>: Erases the specified rectangular area, making it fully transparent. This is essential for animation.</li>
+                    </ul>
+                    <pre><code><span class="comment">// Filled rectangle</span>
+ctx.fillStyle = <span class="string">'#5e81f2'</span>; <span class="comment">// A nice blue</span>
+ctx.<span class="func">fillRect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">150</span>, <span class="number">100</span>);
+
+<span class="comment">// Outlined rectangle</span>
+ctx.strokeStyle = <span class="string">'#f87171'</span>; <span class="comment">// A nice red</span>
+ctx.lineWidth = <span class="number">5</span>;
+ctx.<span class="func">strokeRect</span>(<span class="number">250</span>, <span class="number">50</span>, <span class="number">150</span>, <span class="number">100</span>);</code></pre>
+                    
+                    <h3>Paths (Lines, Triangles, and Custom Shapes)</h3>
+                    <p>For anything more complex than a rectangle, you need to use paths. A path is a list of points connected by lines. The process is always the same:</p>
+                    <ol>
+                        <li>Call `ctx.beginPath()` to start a new path.</li>
+                        <li>Use methods like `moveTo(x, y)` (to move the "pen" without drawing) and `lineTo(x, y)` (to draw a line) to define the shape.</li>
+                        <li>Optionally, call `ctx.closePath()` to automatically draw a line from the current point back to the start.</li>
+                        <li>Call `ctx.stroke()` to draw the outline or `ctx.fill()` to create a solid shape.</li>
+                    </ol>
+                     <pre><code><span class="comment">// Drawing a green triangle</span>
+ctx.strokeStyle = <span class="string">'#4ade80'</span>;
+ctx.lineWidth = <span class="number">3</span>;
+
+ctx.<span class="func">beginPath</span>();
+ctx.<span class="func">moveTo</span>(<span class="number">100</span>, <span class="number">200</span>); <span class="comment">// Start at the top point</span>
+ctx.<span class="func">lineTo</span>(<span class="number">50</span>, <span class="number">300</span>);  <span class="comment">// Draw to the bottom-left point</span>
+ctx.<span class="func">lineTo</span>(<span class="number">150</span>, <span class="number">300</span>); <span class="comment">// Draw to the bottom-right point</span>
+ctx.<span class="func">closePath</span>();   <span class="comment">// Connect back to the start point</span>
+ctx.<span class="func">stroke</span>();       <span class="comment">// Render the outline</span></code></pre>
+                    
+                    <h3>Arcs and Circles</h3>
+                    <p>Circles are drawn using the `arc()` method. The method `arc(x, y, radius, startAngle, endAngle)` is powerful. Angles are measured in radians, not degrees. A full circle goes from 0 to `2 * Math.PI`.</p>
+                     <pre><code><span class="comment">// Drawing a solid violet circle</span>
+ctx.fillStyle = <span class="string">'#8b5cf6'</span>;
+
+ctx.<span class="func">beginPath</span>();
+ctx.<span class="func">arc</span>(<span class="number">325</span>, <span class="number">250</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">2</span> * Math.PI); <span class="comment">// (cx, cy, radius, start, end)</span>
+ctx.<span class="func">fill</span>();</code></pre>
+
+                    <h2>4. Bringing It to Life with Animation</h2>
+                    <p>Static drawings are great, but the real fun begins with animation. The core of any animation is a "render loop"—a function that repeatedly clears the canvas, updates the positions or properties of your shapes, and redraws them. We use `requestAnimationFrame` because it's highly optimized by the browser, pausing when the tab is not visible and syncing with the screen's refresh rate.</p>
+                    <blockquote>The animation loop is the heartbeat of any game or interactive canvas experience. Master this concept, and you can build anything.</blockquote>
+                    <p>Let's create a simple animation of a circle bouncing off the "walls" of the canvas.</p>
+                     <pre><code><span class="comment">// Bouncing Ball Animation</span>
+<span class="keyword">let</span> x = <span class="number">100</span>;
+<span class="keyword">let</span> y = <span class="number">100</span>;
+<span class="keyword">let</span> radius = <span class="number">25</span>;
+<span class="keyword">let</span> dx = <span class="number">4</span>; <span class="comment">// Speed on the x-axis</span>
+<span class="keyword">let</span> dy = <span class="number">2</span>; <span class="comment">// Speed on the y-axis</span>
+
+<span class="keyword">function</span> <span class="func-name">animate</span>() {
+    <span class="comment">// 1. Request the next frame FIRST</span>
+    <span class="func">requestAnimationFrame</span>(animate);
+
+    <span class="comment">// 2. Clear the entire canvas for the new frame</span>
+    ctx.<span class="func">clearRect</span>(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);
+
+    <span class="comment">// 3. Draw the shape</span>
+    ctx.fillStyle = <span class="string">'#5e81f2'</span>;
+    ctx.<span class="func">beginPath</span>();
+    ctx.<span class="func">arc</span>(x, y, radius, <span class="number">0</span>, Math.PI * <span class="number">2</span>);
+    ctx.<span class="func">fill</span>();
+
+    <span class="comment">// 4. Update state (movement and collision detection)</span>
+    <span class="keyword">if</span> (x + radius > canvas.width || x - radius < <span class="number">0</span>) {
+        dx = -dx; <span class="comment">// Reverse x direction</span>
+    }
+    <span class="keyword">if</span> (y + radius > canvas.height || y - radius < <span class="number">0</span>) {
+        dy = -dy; <span class="comment">// Reverse y direction</span>
+    }
+    
+    x += dx;
+    y += dy;
+}
+
+<span class="comment">// Start the loop!</span>
+<span class="func">animate</span>();</code></pre>
+
+                    <h2>Conclusion and Next Steps</h2>
+                    <p>The HTML Canvas is a gateway to a whole new dimension of web development. We've only scratched the surface, but these fundamentals are all you need to start experimenting. From here, you can explore:</p>
+                    <ul>
+                        <li><strong>Interactivity:</strong> Listening for mouse and keyboard events to let the user affect the canvas.</li>
+                        <li><strong>Physics:</strong> Adding forces like gravity and friction to your animations.</li>
+                        <li><strong>Images:</strong> Using `ctx.drawImage()` to render and manipulate images.</li>
+                        <li><strong>Advanced Graphics:</strong> Exploring WebGL (via libraries like Three.js or Babylon.js) for 3D graphics, which also uses the canvas element.</li>
+                    </ul>
+                    <p>Start with the basics, experiment, and see what you can create. For more advanced examples and inspiration, check out the effects on the <a href="../snippets.html">Snippets page</a>!</p>
+                </div>
+            </article>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="../index.js"></script>
+    <script src="article_base.js"></script>
+</body>
+</html>

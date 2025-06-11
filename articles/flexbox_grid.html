@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox & Grid: When to Use Which? - Shane Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="article_base.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul>
+            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="../ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
+            <li><a href="../projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="../snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
+            <li><a href="../articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="../community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="../about.html"><i class="fas fa-user-circle"></i> About Shane</a></li>
+            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="../reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="logged-in-item"><a href="../account.html" data-requires-login="true"><i class="fas fa-user-cog"></i> Account</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="../login.html" class="logged-out-item">Log In</a>
+            <a href="../signup.html" class="logged-out-item">Sign Up</a>
+            <a href="#" class="logged-in-item" id="logout-link">Log Out</a>
+        </div>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Article</span>
+        </header>
+        <main>
+            <div class="breadcrumb-container">
+                <nav aria-label="Breadcrumb" class="breadcrumb">
+                    <ol>
+                        <li><a href="../articles.html">Articles</a></li>
+                        <li><a href="#" class="breadcrumb-theme-link" data-theme="Core Web Tech">Core Web Tech</a></li>
+                        <li><span aria-current="page">Flexbox & Grid: When to Use Which?</span></li>
+                    </ol>
+                </nav>
+            </div>
+            <article class="article-body">
+                <header class="article-header">
+                    <h1>Flexbox & Grid: When to Use Which?</h1>
+                    <div class="article-byline"><span>By Shane Studios</span> | <span>Published on June 9, 2025</span></div>
+                </header>
+                <div class="article-content">
+                    <p>Modern CSS offers two incredibly powerful layout modules: Flexbox and Grid. For newcomers and even seasoned developers, it can be confusing to know when to reach for one over the other. While you can often achieve similar results with both, they were designed with different core philosophies. Understanding these philosophies is the key to building clean, predictable, and maintainable layouts with confidence.</p>
+                    <p>This guide will move beyond simple definitions and explore the intrinsic nature of each module, helping you develop an intuition for choosing the right tool for the job.</p>
+
+                    <h2>Flexbox: The One-Dimensional Champion</h2>
+                    <p>The primary, fundamental purpose of the Flexible Box Layout Module (Flexbox) is to lay out a group of items in a **single dimension**—either as a row or as a column. Think of it as a master of arranging and aligning items along one continuous axis.</p>
+                    
+                    <h3>The Philosophy: Content-First Alignment</h3>
+                    <p>Flexbox works from the perspective of the content inside the container. You have a set of items, and you want to tell them how to behave: how should they space themselves out? How should they align when there's extra space? Should they wrap if they run out of room? It's fundamentally about arranging a list of things.</p>
+                    <p><strong>Analogy:</strong> Imagine a set of books on a single bookshelf. Flexbox is the tool you use to decide if the books should be squished to the left, spread out evenly across the shelf, or centered in the middle. You're working along that one shelf (the main axis).</p>
+
+                    <h3>Core Properties in Action</h3>
+                    <p>Flexbox's power comes from a few key container properties:</p>
+                    <ul>
+                        <li><strong>`display: flex;`</strong>: This is the magic switch that turns an element into a flex container.</li>
+                        <li><strong>`flex-direction:`</strong>: Defines the main axis. Is it a `row` (default) or a `column`?</li>
+                        <li><strong>`justify-content:`</strong>: This is the most-used property. It controls the alignment of items along the main axis (e.g., `flex-start`, `center`, `space-between`).</li>
+                        <li><strong>`align-items:`</strong>: Controls the alignment of items along the cross axis (perpendicular to the main axis).</li>
+                    </ul>
+                    <pre><code><span class="comment">/* A perfect use case: A website header's navigation */</span>
+.header-nav {
+  display: flex;
+  flex-direction: row; <span class="comment">/* Lay out items horizontally */</span>
+  justify-content: space-between; <span class="comment">/* Pushes logo to the left and nav links to the right */</span>
+  align-items: center; <span class="comment">/* Vertically centers all items */</span>
+  width: 100%;
+  padding: 1rem;
+}</code></pre>
+
+                    <h3>When Should You Use Flexbox?</h3>
+                    <p>Reach for Flexbox when you are arranging items in a single line, either horizontally or vertically. It's the ideal choice for:</p>
+                    <ul>
+                        <li>Navigation bars</li>
+                        <li>Aligning items within a card component (e.g., an icon next to a title)</li>
+                        <li>Centering an element perfectly within its parent</li>
+                        <li>Button groups</li>
+                        <li>Distributing a set of items evenly</li>
+                    </ul>
+
+                    <h2>Grid: The Two-Dimensional Master</h2>
+                    <p>CSS Grid Layout, by contrast, was designed from the ground up for **two-dimensional layouts**. It works with both rows and columns simultaneously, giving you control over the entire page structure in a way that was previously impossible without complex hacks.</p>
+
+                    <h3>The Philosophy: Layout-First Structure</h3>
+                    <p>Grid works from the perspective of the container. You first define a rigid or flexible grid structure—a set of rows and columns—and then you place your items onto that grid. It's about creating a blueprint for your content to live in.</p>
+                    <p><strong>Analogy:</strong> Imagine a chessboard. Grid is the tool you use to define the 8x8 board itself. Once the board is defined, you can precisely place your chess pieces (your content) onto specific squares, or even have a piece span multiple squares.</p>
+                    
+                    <h3>Core Properties in Action</h3>
+                    <p>Grid's power comes from its ability to define the structure explicitly:</p>
+                    <ul>
+                        <li><strong>`display: grid;`</strong>: Turns an element into a grid container.</li>
+                        <li><strong>`grid-template-columns` & `grid-template-rows`</strong>: The heart of Grid. Here you define the size and number of your columns and rows using units like `px`, `%`, `fr` (fractional unit), and `auto`.</li>
+                        <li><strong>`gap`</strong>: A simple property to define the spacing (the "gutters") between grid cells.</li>
+                        <li><strong>`grid-template-areas`</strong>: An incredibly intuitive way to visualize and assign items to named regions of your grid.</li>
+                    </ul>
+                    <pre><code><span class="comment">/* A classic page layout example */</span>
+.page-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 250px 1fr; <span class="comment">/* A fixed sidebar and a flexible main area */</span>
+  grid-template-rows: auto 1fr auto; <span class="comment">/* Header, main content, and footer rows */</span>
+  grid-template-areas: 
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+}
+
+<span class="comment">/* Now, placing elements is as simple as naming them */</span>
+.main-header { grid-area: header; }
+.main-sidebar { grid-area: sidebar; }
+.main-content { grid-area: main; }
+.main-footer { grid-area: footer; }</code></pre>
+
+                    <h3>When Should You Use Grid?</h3>
+                    <p>Reach for Grid whenever you are dealing with a layout that has both rows and columns. It is the best choice for:</p>
+                    <ul>
+                        <li>Overall page layouts (header, sidebar, content, etc.)</li>
+                        <li>Complex component layouts, like a photo gallery or a dashboard with multiple widgets</li>
+                        <li>Any design where you need precise control over both horizontal and vertical alignment simultaneously</li>
+                        <li>Creating layouts where elements intentionally overlap</li>
+                    </ul>
+
+                    <h2>The Modern Approach: Use Them Together</h2>
+                    <blockquote>The most important takeaway is this: it's not "Flexbox vs. Grid," it's "Flexbox **and** Grid." The most powerful layouts use both, leveraging each for what it does best.</blockquote>
+                    <p>This is the modern, professional workflow. You use Grid for the macro-level layout—the big picture of your page structure. Then, within a specific grid area, you use Flexbox for the micro-level layout—the alignment of items within that component.</p>
+                    
+                    <h3>A Combined Example</h3>
+                    <p>Let's combine our two previous examples. We'll use Grid for the page structure and Flexbox for the header's internal alignment.</p>
+                    <pre><code><span class="comment">/* 1. The page layout is defined with GRID */</span>
+.page-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header" "main";
+}
+.main-header { grid-area: header; }
+
+<span class="comment">/* 2. Inside the header, we use FLEXBOX to align its children */</span>
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+                    <p>This approach gives you the best of both worlds: the robust, two-dimensional structure of Grid and the powerful, one-dimensional alignment capabilities of Flexbox. It results in CSS that is cleaner, more readable, and easier to maintain.</p>
+
+                    <h2>Conclusion</h2>
+                    <p>Stop thinking of Flexbox and Grid as competitors. Think of them as specialized tools in your CSS toolbox. For arranging items along a single line, reach for Flexbox. For orchestrating the entire two-dimensional blueprint of a component or page, reach for Grid. By understanding their distinct philosophies and combining their strengths, you can build any web layout imaginable with unprecedented ease and clarity.</p>
+                </div>
+            </article>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="../index.js"></script>
+    <script src="article_base.js"></script>
+</body>
+</html>
