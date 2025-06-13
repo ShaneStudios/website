@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('times-up-modal');
     const iframe = document.getElementById('ryxide-iframe');
     const isLoggedIn = localStorage.getItem('shaneStudiosLoggedIn') === 'true';
-    let timeInSeconds = isLoggedIn ? 1800 : 900;
+    let timeInSeconds = 1800;
     const countdown = setInterval(() => {
         timeInSeconds--;
         const minutes = Math.floor(timeInSeconds / 60);
