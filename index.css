@@ -119,9 +119,12 @@ body {
     text-align: center;
 }
 #page-container {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+}
+main {
+    flex-grow: 1;
 }
 header {
     display: flex;
