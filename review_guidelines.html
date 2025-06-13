@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Guidelines - Shane Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="guidelines.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
+            <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
+            <li><a href="articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="about.html"><i class="fas fa-user-circle"></i> About Shane</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="logged-in-item"><a href="account.html" data-requires-login="true"><i class="fas fa-user-cog"></i> Account</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="login.html" class="logged-out-item">Log In</a>
+            <a href="signup.html" class="logged-out-item">Sign Up</a>
+            <a href="#" class="logged-in-item" id="logout-link">Log Out</a>
+        </div>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Guidelines</span>
+        </header>
+        <main>
+            <div class="guidelines-intro">
+                <h1>Review Guidelines</h1>
+                <p>Thank you for taking the time to provide a review! Your feedback is incredibly valuable for improving this website and my projects. To ensure your review is as helpful as possible, please consider the following guidelines.</p>
+            </div>
+            <div class="guidelines-content">
+                <h2>The Principles of a Constructive Review</h2>
+                <p>A great review goes beyond a simple "I liked it" or "I didn't like it." It provides context and specific examples that help me understand your experience. A constructive review is:</p>
+                <ul>
+                    <li><strong>Specific:</strong> Instead of "the articles page is confusing," try "I found it difficult to find the search bar on the articles page." Specificity helps me pinpoint the exact problem.</li>
+                    <li><strong>Objective:</strong> Try to describe your experience factually. For example, "The RyxIDE demo page took 10 seconds to load on my connection," is more useful than "the page is slow."</li>
+                    <li><strong>Balanced:</strong> If possible, mention both what you liked and what you think could be improved. This provides a well-rounded perspective.</li>
+                    <li><strong>Actionable:</strong> The best feedback includes a potential solution or a clear problem statement. "It would be helpful if the 'Copy' button on snippets turned green after clicking" is a great, actionable suggestion.</li>
+                    <li><strong>Respectful:</strong> All feedback is welcome, but please maintain a respectful and considerate tone.</li>
+                </ul>
+                <h2>What to Review?</h2>
+                <p>You can review any aspect of Shane Studios, including:</p>
+                <ul>
+                    <li>The overall website design and user experience.</li>
+                    <li>The quality and clarity of a specific article.</li>
+                    <li>The functionality and usefulness of a project or snippet.</li>
+                    <li>The performance and responsiveness of the site.</li>
+                </ul>
+                <p>Please be sure to mention what specific page, article, or project you are reviewing in your email!</p>
+                <h2>Star Rating Guide</h2>
+                <p>When you submit a review, please include a star rating from 1 to 5. Here is a general guide to help you decide on a rating:</p>
+                <table class="rating-table">
+                    <thead>
+                        <tr>
+                            <th>Rating</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="stars">★★★★★</td>
+                            <td><strong>Excellent.</strong> The feature/content is exceptional, polished, and exceeded expectations. I would highly recommend it to others. No major issues found.</td>
+                        </tr>
+                        <tr>
+                            <td class="stars">★★★★☆</td>
+                            <td><strong>Good.</strong> A solid and useful feature/content with a few minor issues or areas for improvement. I had a positive experience overall.</td>
+                        </tr>
+                        <tr>
+                            <td class="stars">★★★☆☆</td>
+                            <td><strong>Average.</strong> The feature/content works as expected but isn't exceptional. It may have some noticeable usability issues or lacks polish, but it's functional.</td>
+                        </tr>
+                        <tr>
+                            <td class="stars">★★☆☆☆</td>
+                            <td><strong>Below Average.</strong> The feature/content has significant issues that hinder the experience. It may be confusing, buggy, or incomplete.</td>
+                        </tr>
+                        <tr>
+                            <td class="stars">★☆☆☆☆</td>
+                            <td><strong>Poor.</strong> The feature/content is broken, unusable, or fundamentally flawed. It caused significant frustration.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="back-link-container">
+                    <a href="contact.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Contact Page</a>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
