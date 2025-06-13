@@ -38,5 +38,15 @@ export const articles = [
         mainTheme: 'Creative Coding',
         tags: ['CSS', 'Design', 'Theming'],
         url: 'articles/css_variables.html'
+    },
+    {
+        id: 'wasm-deep-dive-06',
+        title: 'A Deep Dive into WebAssembly (WASM)',
+        subtitle: 'The complete guide to understanding what WASM is, why it matters, and how it is revolutionizing web and server-side development.',
+        date: '2025-06-14',
+        author: 'Shane Studios',
+        mainTheme: 'Core Web Tech',
+        tags: ['WASM', 'WebAssembly', 'Performance', 'Rust', 'C++', 'Tutorial'],
+        url: 'articles/webassembly_deep_dive.html'
     }
 ];
