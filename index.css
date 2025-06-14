@@ -129,7 +129,14 @@ main {
 header {
     display: flex;
     align-items: center;
-    padding: 25px 5%;
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
 }
 #menu-toggle {
     background: transparent;
@@ -137,7 +144,6 @@ header {
     color: var(--text-color);
     font-size: 1.6rem;
     cursor: pointer;
-    z-index: 50;
     padding: 5px;
 }
 .header-title {
@@ -159,14 +165,6 @@ footer {
     align-items: center;
     text-align: center;
     padding: 6rem 20px;
-    background: linear-gradient(300deg, var(--background-color), #2c3e50, var(--background-color));
-    background-size: 180% 180%;
-    animation: gradient-animation 12s ease infinite;
-}
-@keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 .hero-content {
     animation: fade-in-up 0.8s ease-out forwards;
