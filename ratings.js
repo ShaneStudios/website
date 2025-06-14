@@ -5,14 +5,14 @@ export const reviews = [
         date: '2025-06-14',
         rating: 5,
         message: 'The site looks amazing and runs extremely well! All of the articles are exceptionally accurate and give a lot of details, Congrats and keep up the amazing work!!'
+    },
+    {
+        id: 'rev02',
+        name: 'Erika',
+        date: '2025-06-14',
+        rating: 4,
+        message: 'Purely based on design and functionality. Overall, the design is fairly decent, however I do feel as if it is a little bit too bland or maybe— I daresay empty— I\'d recommend a more interesting background.'
     }
-    //{
-    //    id: 'rev02',
-    //    name: 'Ben C.',
-    //    date: '2025-06-10',
-    //    rating: 4,
-    //    message: 'The articles section is fantastic. I learned a ton from the Flexbox vs. Grid article. The only thing I\'d wish for is a comment section to discuss the topics with other readers. Otherwise, a very solid resource.'
-    //},
     //{
     //    id: 'rev03',
     //    name: 'Casey R.',
