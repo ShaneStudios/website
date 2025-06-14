@@ -1,11 +1,11 @@
 export const reviews = [
-    //{
-    //    id: 'rev01',
-    //    name: 'Alex D.',
-    //    date: '2025-06-12',
-    //    rating: 5,
-    //    message: 'The WebAssembly deep dive is phenomenal. It\'s the most comprehensive and easy-to-understand guide I\'ve found anywhere. The entire site is fast, clean, and a joy to use. Keep up the incredible work!'
-    //},
+    {
+        id: 'rev01',
+        name: 'Maddison R.',
+        date: '2025-06-14',
+        rating: 5,
+        message: 'The site looks amazing and runs extremely well! All of the articles are exceptionally accurate and give a lot of details, Congrats and keep up the amazing work!!'
+    }
     //{
     //    id: 'rev02',
     //    name: 'Ben C.',
