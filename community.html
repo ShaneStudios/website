@@ -16,17 +16,7 @@
     <nav id="side-menu">
         <button id="close-btn" aria-label="Close Menu">×</button>
         <div class="menu-header">Shane Studios</div>
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
-            <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li><a href="snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
-            <li><a href="articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-        </ul>
-        <div class="menu-footer"></div>
+        <ul></ul>
     </nav>
     <div id="page-container">
         <header>
@@ -35,6 +25,38 @@
         </header>
         <main>
             <div class="community-intro">
+                <h1>From the Community</h1>
+                <p>Explore a curated collection of projects, snippets, and creative works submitted by the talented members of our community.</p>
+            </div>
+            <div class="filter-controls">
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="search" id="search-input" placeholder="Search submissions...">
+                </div>
+                <div class="select-filters">
+                    <select id="language-filter" aria-label="Filter by language">
+                        <option value="All">All Languages</option>
+                    </select>
+                    <select id="type-filter" aria-label="Filter by type">
+                        <option value="All">All Types</option>
+                    </select>
+                    <select id="sort-by" aria-label="Sort by">
+                        <option value="newest">Sort by Newest</option>
+                        <option value="oldest">Sort by Oldest</option>
+                    </select>
+                </div>
+            </div>
+            <div id="submission-list-container">
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="global.js" type="module"></script>
+    <script src="community.js" type="module"></script>
+</body>
+</html>            <div class="community-intro">
                 <h1>From the Community</h1>
                 <p>Explore a curated collection of projects, snippets, and creative works submitted by the talented members of our community.</p>
             </div>
