@@ -1,0 +1,35 @@
+import { menuItems } from './menu.js';
+document.addEventListener('DOMContentLoaded', () => {
+    const menuList = document.querySelector('#side-menu ul');
+    if (menuList) {
+        const menuHTML = menuItems.map(item => `
+            <li>
+                <a href="/${item.href}">
+                    <i class="${item.icon}"></i> ${item.text}
+                </a>
+            </li>
+        `).join('');
+        menuList.innerHTML = menuHTML;
+    }
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeBtn = document.getElementById('close-btn');
+    const sideMenu = document.getElementById('side-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const openMenu = () => {
+        sideMenu.classList.add('open');
+        menuOverlay.classList.add('active');
+    };
+    const closeMenu = () => {
+        sideMenu.classList.remove('open');
+        menuOverlay.classList.remove('active');
+    };
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openMenu);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+    }
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+});
