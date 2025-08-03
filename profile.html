@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - Shane Studios</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul></ul>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Shane Studios</span>
+        </header>
+        <main>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h1 id="welcome-message">Loading Profile...</h1>
+                    <p>Manage your public profile information and account settings below.</p>
+                </div>
+                <div class="profile-form-box">
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="member-id">Member ID</label>
+                            <input type="text" id="member-id" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="display-name">Display Name</label>
+                            <input type="text" id="display-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" required pattern="^[a-zA-Z0-9_]{3,20}$" title="3-20 characters, letters, numbers, and underscores only.">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" rows="4" placeholder="Tell us a little about yourself..."></textarea>
+                        </div>
+                        <div id="form-message"></div>
+                        <div class="form-actions">
+                             <button type="submit" id="update-button" class="action-button">Update Profile</button>
+                             <button type="button" id="logout-button" class="action-button secondary">Log Out</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="global.js" type="module"></script>
+    <script src="profile.js" type="module"></script>
+</body>
+</html>
