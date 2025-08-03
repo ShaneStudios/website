@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Shane Studios</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="users.css">
+</head>
+<body>
+    <div id="menu-overlay"></div>
+    <nav id="side-menu">
+        <button id="close-btn" aria-label="Close Menu">×</button>
+        <div class="menu-header">Shane Studios</div>
+        <ul></ul>
+    </nav>
+    <div id="page-container">
+        <header>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <span class="header-title">Shane Studios</span>
+        </header>
+        <main>
+            <div id="directory-view">
+                <div class="users-intro">
+                    <h1>User Directory</h1>
+                    <p>Find and discover other members of the Shane Studios community.</p>
+                </div>
+                <div class="filter-controls">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="search" id="search-input" placeholder="Search by username or display name...">
+                    </div>
+                    <button id="discover-button" class="discover-button">
+                        <i class="fas fa-dice"></i> Discover Random Users
+                    </button>
+                </div>
+                <div id="user-grid-container">
+                </div>
+            </div>
+            <div id="profile-view-container">
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Shane Studios. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="global.js" type="module"></script>
+    <script src="users.js" type="module"></script>
+</body>
+</html>
