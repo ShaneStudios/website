@@ -17,16 +17,7 @@
     <nav id="side-menu">
         <button id="close-btn" aria-label="Close Menu">×</button>
         <div class="menu-header">Shane Studios</div>
-        <ul>
-            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="../ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
-            <li><a href="../projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li><a href="../snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
-            <li><a href="../articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-            <li><a href="../community.html"><i class="fas fa-users"></i> Community</a></li>
-            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="../reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-        </ul>
+        <ul></ul>
     </nav>
     <div id="page-container">
         <header>
@@ -51,10 +42,8 @@
                 <div class="article-content">
                     <p>For years, one of the biggest limitations of CSS was the inability to use variables natively. Developers relied on pre-processors like Sass or Less to manage reusable values like colors, fonts, and spacing. While effective, this added a compilation step to the workflow. Today, we have a powerful, native solution that is more flexible and dynamic than any pre-processor could be: <strong>CSS Custom Properties</strong>.</p>
                     <p>This article will be a deep dive into not just what they are, but how to leverage their full potential to build more maintainable, dynamic, and powerful web applications.</p>
-                    
                     <h2>The Core Syntax: A Deeper Look</h2>
                     <p>At its heart, the syntax is simple. You declare a custom property by prefixing its name with two dashes (`--`), and you use it with the `var()` function. However, the power lies in understanding two key concepts: scoping and fallbacks.</p>
-                    
                     <h3>Scoping and the Cascade</h3>
                     <p>Custom properties follow the same cascade rules as any other CSS property. This is a massive advantage. The most common practice is to define global variables on the `:root` pseudo-class, which is equivalent to the `<html>` element, making them available everywhere.</p>
                     <pre><code>:root {
@@ -67,24 +56,19 @@
   --global-theme-color: #8b5cf6; 
   background-color: <span class="func">var</span>(--global-theme-color); <span class="comment">/* This will be violet */</span>
 }
-
 .regular-element {
   background-color: <span class="func">var</span>(--global-theme-color); <span class="comment">/* This will be the global blue */</span>
 }</code></pre>
-
                     <h3>Providing Fallback Values</h3>
                     <p>The `var()` function can accept a second parameter: a fallback value. This value will be used if the custom property is not defined. This is crucial for writing robust CSS that won't break if a variable is missing.</p>
                     <pre><code>.alert {
   <span class="comment">/* If --alert-color is not set, it will default to orange */</span>
   background-color: <span class="func">var</span>(--alert-color, orange);
-  
   <span class="comment">/* You can even chain fallbacks */</span>
   color: <span class="func">var</span>(--alert-text-color, <span class="func">var</span>(--global-text-color, black));
 }</code></pre>
-
                     <h2>The Dynamic Power: Real-World Use Cases</h2>
                     <p>The true advantage of custom properties over pre-processor variables is their dynamic, "live" nature. Because they exist in the DOM, they can be read and manipulated with JavaScript. This opens up a world of possibilities.</p>
-                    
                     <h3>Advanced Dynamic Theming</h3>
                     <p>The most cited use case is theme switching, but we can make it more powerful. By defining your entire color palette as custom properties, you can create multiple themes (light, dark, high-contrast, etc.) and switch between them by simply changing a `data-theme` attribute on the `<html>` element.</p>
                     <pre><code><span class="comment">/* Define default (light) theme variables */</span>
@@ -94,7 +78,6 @@
   --surface-color: #f9fafb;
   --primary-color: #4a90e2;
 }
-
 <span class="comment">/* Define overrides for the dark theme */</span>
 [data-theme="dark"] {
   --bg-color: #111827;
@@ -102,14 +85,12 @@
   --surface-color: #1f2937;
   --primary-color: #5e81f2;
 }
-
 <span class="comment">/* JavaScript to toggle the theme */</span>
 <span class="keyword">const</span> toggleBtn = document.<span class="func">querySelector</span>(<span class="string">'#theme-switcher'</span>);
 toggleBtn.<span class="func">addEventListener</span>(<span class="string">'click'</span>, () => {
     <span class="keyword">const</span> currentTheme = document.documentElement.getAttribute(<span class="string">'data-theme'</span>);
     document.documentElement.setAttribute(<span class="string">'data-theme'</span>, currentTheme === <span class="string">'dark'</span> ? <span class="string">'light'</span> : <span class="string">'dark'</span>);
 });</code></pre>
-
                     <h3>Component-Based Styling</h3>
                     <p>Custom properties are a perfect match for creating self-contained, customizable components. You can define a component's styles using local variables, which act as a public API for that component. Anyone using the component can then easily customize its appearance without writing complex override selectors.</p>
                      <pre><code><span class="comment">/* Define a generic card component */</span>
@@ -117,35 +98,29 @@ toggleBtn.<span class="func">addEventListener</span>(<span class="string">'click
   --card-padding: 1.5rem;
   --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
   --card-border-color: #e0e0e0;
-
   padding: <span class="func">var</span>(--card-padding);
   box-shadow: <span class="func">var</span>(--card-shadow);
   border: 1px solid <span class="func">var</span>(--card-border-color);
 }
-
 <span class="comment">/* Now, create a "featured" variant by just changing the variables */</span>
 .card.is-featured {
   --card-border-color: #5e81f2;
   --card-shadow: 0 15px 30px rgba(94, 129, 242, 0.2);
 }</code></pre>
-
                     <h3>Powering `calc()` and Simplifying Layouts</h3>
                     <p>One of the most powerful combinations is using `var()` inside `calc()`. This allows you to perform calculations based on your defined variables, making complex and responsive layouts much more intuitive.</p>
                     <pre><code>:root {
   --header-height: 70px;
   --content-padding: 2rem;
 }
-
 .main-content {
   <span class="comment">/* Calculate height based on viewport and header height */</span>
   min-height: <span class="func">calc</span>(100vh - <span class="func">var</span>(--header-height));
 }
-
 .sidebar {
   <span class="comment">/* Position relative to the main content's padding */</span>
   margin-left: <span class="func">calc</span>(<span class="func">var</span>(--content-padding) * -1);
 }</code></pre>
-
                     <h2>Advanced Techniques and Common Pitfalls</h2>
                     <p>While powerful, there are some nuances to be aware of.</p>
                     <h3>Animating Custom Properties and `@property`</h3>
@@ -165,13 +140,11 @@ toggleBtn.<span class="func">addEventListener</span>(<span class="string">'click
   inherits: false;
   initial-value: blue;
 }
-
 .box {
   --bg-color: blue;
   background-color: <span class="func">var</span>(--bg-color);
   transition: --bg-color 0.5s; <span class="comment">/* NOW THIS WORKS! */</span>
 }</code></pre>
-                    
                     <h2>Conclusion</h2>
                     <p>CSS Custom Properties are far more than just "variables." They are a dynamic, cascading, and scriptable system that fundamentally enhances the power of CSS. They allow for more maintainable code, enable powerful theming mechanisms, and simplify the creation of complex, component-based systems. By moving beyond the mindset of static pre-processor variables and embracing the live, DOM-aware nature of custom properties, you unlock a new level of creativity and efficiency in modern web development.</p>
                 </div>
@@ -181,7 +154,7 @@ toggleBtn.<span class="func">addEventListener</span>(<span class="string">'click
             <p>© 2025 Shane Studios. All Rights Reserved.</p>
         </footer>
     </div>
-    <script src="../index.js"></script>
+    <script src="../global.js" type="module"></script>
     <script src="article_base.js"></script>
 </body>
 </html>
