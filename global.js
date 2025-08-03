@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.text === 'Profile') {
                     return {
                         ...item,
-                        href: user ? 'profile.html' : 'register.html'
+                        href: user ? 'website/profile.html' : 'website/register.html'
                     };
                 }
                 return item;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 nagBanner.innerHTML = `
                     <p>Create a free account to unlock future features and engage with the community!</p>
                     <div class="nag-actions">
-                        <a href="/register.html" class="nag-button primary">Create Account</a>
+                        <a href="website/register.html" class="nag-button primary">Create Account</a>
                         <button class="nag-button" id="dismiss-nag">Dismiss</button>
                     </div>
                 `;
