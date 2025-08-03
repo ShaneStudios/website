@@ -8,6 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const sideMenu = document.getElementById('side-menu');
     const menuOverlay = document.getElementById('menu-overlay');
 
+    const openMenu = () => {
+        if (sideMenu) sideMenu.classList.add('open');
+        if (menuOverlay) menuOverlay.classList.add('active');
+    };
+
+    const closeMenu = () => {
+        if (sideMenu) sideMenu.classList.remove('open');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+    };
+
     const updateMenuForAuthState = (user) => {
         const updatedMenuItems = menuItems.map(item => {
             if (item.text === 'Profile') {
@@ -52,9 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    const openMenu = () => sideMenu.classList.add('open');
-    const closeMenu = () => sideMenu.classList.remove('open');
-
     if (menuToggle) menuToggle.addEventListener('click', openMenu);
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
     if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
