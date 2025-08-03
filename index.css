@@ -275,3 +275,47 @@ footer {
     -moz-user-select: text;
     -ms-user-select: text;
 }
+.nag-banner {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+.nag-banner p {
+    color: var(--text-muted-color);
+    margin: 0;
+}
+.nag-actions {
+    display: flex;
+    gap: 1rem;
+}
+.nag-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+.nag-button.primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.nag-button:hover {
+    color: var(--text-color);
+    border-color: var(--text-muted-color);
+}
+.nag-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(94, 129, 242, 0.2);
+}
