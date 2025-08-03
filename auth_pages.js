@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginButton.textContent = 'Log In';
             } else {
                 showMessage('Login successful! Redirecting...', 'success');
-                window.location.href = '/profile.html';
+                window.location.href = 'website/profile.html';
             }
         });
     }
