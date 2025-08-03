@@ -17,16 +17,7 @@
     <nav id="side-menu">
         <button id="close-btn" aria-label="Close Menu">×</button>
         <div class="menu-header">Shane Studios</div>
-        <ul>
-            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="../ryxide.html"><i class="fas fa-laptop-code"></i> RyxIDE Demo</a></li>
-            <li><a href="../projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li><a href="../snippets.html"><i class="fas fa-file-code"></i> Snippets</a></li>
-            <li><a href="../articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-            <li><a href="../community.html"><i class="fas fa-users"></i> Community</a></li>
-            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="../reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-        </ul>
+        <ul></ul>
     </nav>
     <div id="page-container">
         <header>
@@ -50,78 +41,45 @@
                 </header>
                 <div class="article-content">
                     <p>In the world of JavaScript performance optimization, two terms come up constantly when dealing with frequently firing events: "debounce" and "throttle". Both are higher-order functions that wrap an event handler to control its execution rate, but they solve fundamentally different problems. Using the wrong one can lead to a sluggish, unresponsive, or buggy user experience. This guide will provide a deep, practical understanding of each.</p>
-                    
                     <h2>What is Debounce? The "Wait and See" Approach</h2>
                     <p>Debouncing enforces that a function will not be called again until a certain amount of time has passed *without it being called*. It's a pattern that waits for a pause in the storm of events before taking action. It only cares about the final invocation.</p>
-                    
                     <h3>A Better Analogy: The Autocomplete Search Bar</h3>
                     <p>Imagine typing "javascript" into a search bar that fetches suggestions from an API. You wouldn't want to fire an API request for "j", then "ja", then "jav", and so on. That's incredibly inefficient. Instead, you want to wait until the user has paused typing. A debounced function will reset its timer with every keystroke. Only when the user stops typing for, say, 300 milliseconds, will the function finally execute with the complete term "javascript".</p>
                     <img src="versus.png" style="width:100%; border-radius: 8px; margin: 1rem 0;">
-
                     <h3>A Complete Debounce Implementation</h3>
                     <p>A good debounce function handles passing arguments and the `this` context correctly from the wrapped function.</p>
-                    <pre><code><span class="comment">/**
- * Creates a debounced function that delays invoking `func` until after `delay`
- * milliseconds have elapsed since the last time the debounced function was invoked.
- * @param {Function} func The function to debounce.
- * @param {number} delay The number of milliseconds to delay.
- * @returns {Function} Returns the new debounced function.
- */</span>
-<span class="keyword">function</span> <span class="func-name">debounce</span>(func, delay) {
+                    <pre><code><span class="keyword">function</span> <span class="func-name">debounce</span>(func, delay) {
     <span class="keyword">let</span> timeoutId;
-
-    <span class="comment">// The returned function is what gets called on every event</span>
     <span class="keyword">return function</span>(...args) {
-        <span class="comment">// `this` and `args` are preserved from the original call</span>
         <span class="keyword">const</span> context = <span class="keyword">this</span>;
-
-        <span class="comment">// Clear the previous timeout to reset the waiting period</span>
         <span class="func">clearTimeout</span>(timeoutId);
-
-        <span class="comment">// Set a new timeout</span>
         timeoutId = <span class="func">setTimeout</span>(() => {
-            <span class="comment">// When the timeout completes, call the original function</span>
             func.<span class="func">apply</span>(context, args);
         }, delay);
     };
 }</code></pre>
-
                     <h2>What is Throttle? The "Rate Limiter" Approach</h2>
                     <p>Throttling enforces a maximum number of times a function can be called over a period of time. It doesn't wait for a pause; it just says, "No matter how much you ask, I will only execute at most once every X milliseconds." It guarantees a regular, predictable execution rate.</p>
-
                     <h3>A Better Analogy: A Video Game Action</h3>
                     <p>Imagine playing a video game where you can shoot a laser. If you could fire the laser every time the game's loop runs (60 times per second), it would be overpowering. Instead, the game developers *throttle* your ability to shoot. Even if you hold down the fire button, the laser only fires, say, once every 500 milliseconds. It ensures a consistent rate of fire while still responding to your continuous action.</p>
                     <img src="throttle.png" style="width:100%; border-radius: 8px; margin: 1rem 0;">
-
                     <h3>A Complete Throttle Implementation</h3>
                     <p>This implementation ensures the function runs at the specified interval without queuing up calls.</p>
-                    <pre><code><span class="comment">/**
- * Creates a throttled function that only invokes `func` at most once per
- * every `limit` milliseconds.
- * @param {Function} func The function to throttle.
- * @param {number} limit The number of milliseconds to throttle executions to.
- * @returns {Function} Returns the new throttled function.
- */</span>
-<span class="keyword">function</span> <span class="func-name">throttle</span>(func, limit) {
+                    <pre><code><span class="keyword">function</span> <span class="func-name">throttle</span>(func, limit) {
     <span class="keyword">let</span> inThrottle;
     <span class="keyword">let</span> lastResult;
-
     <span class="keyword">return function</span>(...args) {
         <span class="keyword">const</span> context = <span class="keyword">this</span>;
-
         <span class="keyword">if</span> (!inThrottle) {
             inThrottle = <span class="keyword">true</span>;
-            
             <span class="func">setTimeout</span>(() => {
                 inThrottle = <span class="keyword">false</span>;
             }, limit);
-            
             lastResult = func.<span class="func">apply</span>(context, args);
         }
         <span class="keyword">return</span> lastResult;
     };
 }</code></pre>
-                    
                     <h2>Debounce vs. Throttle: Head-to-Head Comparison</h2>
                     <blockquote>The simplest way to remember the difference: <strong>Debounce</strong> groups a burst of events into one. <strong>Throttle</strong> guarantees a steady flow of executions during a burst of events.</blockquote>
                     <p>Here's a table to help solidify the concepts:</p>
@@ -134,7 +92,6 @@
                             <tr><td><strong>Event Handling</strong></td><td>Ignores all intermediate events in a series.</td><td>Fires on the leading edge and then at regular intervals.</td></tr>
                         </tbody>
                     </table>
-
                     <h2>Conclusion: Choosing the Right Tool for the Job</h2>
                     <p>The choice between debounce and throttle is not about which is "better," but which is appropriate for the task. Your decision should be driven by the desired user experience. Do you need to react to a single, final action, or do you need to provide continuous feedback for an ongoing action? Answering that question will tell you whether you need to debounce or throttle your event handlers, leading to a more performant and intuitive application.</p>
                 </div>
@@ -144,7 +101,7 @@
             <p>© 2025 Shane Studios. All Rights Reserved.</p>
         </footer>
     </div>
-    <script src="../index.js"></script>
+    <script src="../global.js" type="module"></script>
     <script src="article_base.js"></script>
 </body>
 </html>
