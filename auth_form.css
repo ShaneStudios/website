@@ -1,0 +1,99 @@
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%;
+}
+.auth-form-box {
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.auth-form-box h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted-color);
+}
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(94, 129, 242, 0.2);
+}
+#turnstile-container {
+    margin-bottom: 1.5rem;
+}
+#form-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+}
+#form-message.success {
+    background-color: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    color: #4ade80;
+    display: block;
+}
+#form-message.error {
+    background-color: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    color: #f87171;
+    display: block;
+}
+.auth-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.auth-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(94, 129, 242, 0.25);
+}
+.auth-button:disabled {
+    background-color: var(--border-color);
+    color: var(--text-muted-color);
+    cursor: not-allowed;
+}
+.switch-form-link {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.switch-form-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
