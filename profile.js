@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             display_name: displayNameInput.value,
             username: usernameInput.value,
             bio: bioInput.value,
-            updated_at: new Date(),
         };
 
         const { error } = await supabase.from('profiles').upsert(updates);
