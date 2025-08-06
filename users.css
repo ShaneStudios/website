@@ -167,3 +167,18 @@
     padding: 4rem 2rem;
     color: var(--text-muted-color);
 }
+.back-link-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+.back-link:hover {
+    color: var(--primary-color);
+}
