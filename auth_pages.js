@@ -14,11 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputs = registerForm.querySelectorAll('input');
             let allValid = true;
             inputs.forEach(input => {
-                if (!input.checkValidity()) allValid = false;
+                if (!input.checkValidity()) {
+                    allValid = false;
+                }
             });
             registerButton.disabled = !allValid;
         };
-        registerForm.querySelectorAll('input').forEach(input => input.addEventListener('input', checkRegisterFormState));
+        registerForm.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', checkRegisterFormState);
+        });
+        checkRegisterFormState();
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             registerButton.disabled = true;
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
             const displayName = document.getElementById('display-name').value;
-            const { data, error } = await signUp(email, password, username, displayName);
+            const { error } = await signUp(email, password, username, displayName);
             if (error) {
                 showMessage(error.message || 'An unknown error occurred.');
                 registerButton.disabled = false;
