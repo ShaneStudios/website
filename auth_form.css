@@ -43,9 +43,6 @@
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(94, 129, 242, 0.2);
 }
-#turnstile-container {
-    margin-bottom: 1.5rem;
-}
 #form-message {
     padding: 1rem;
     margin-bottom: 1.5rem;
@@ -96,4 +93,20 @@
     color: var(--primary-color);
     font-weight: 600;
     text-decoration: none;
+}
+.auth-success-state {
+    text-align: center;
+    color: var(--text-muted-color);
+}
+.auth-success-state .fas {
+    font-size: 3rem;
+    color: #4ade80;
+    margin-bottom: 1.5rem;
+}
+.auth-success-state h2 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+.auth-success-state p {
+    line-height: 1.7;
 }
