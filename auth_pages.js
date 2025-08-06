@@ -38,9 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 registerButton.disabled = false;
                 registerButton.textContent = 'Register';
             } else {
-                registerForm.style.display = 'none';
-                document.querySelector('.switch-form-link').style.display = 'none';
-                showMessage('Success! Please check your email for a verification link.', 'success');
+                const formBox = document.querySelector('.auth-form-box');
+                formBox.innerHTML = `
+                    <div class="auth-success-state">
+                        <i class="fas fa-paper-plane"></i>
+                        <h2>Please Verify Your Email</h2>
+                        <p>Thank you for registering! We've sent a verification link to your email address. Please click the link in that email to activate your account before you can log in.</p>
+                    </div>
+                `;
             }
         });
     }
