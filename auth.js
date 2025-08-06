@@ -1,65 +1,76 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check.js";
+import { firebaseConfig, RECAPTCHA_SITE_KEY } from './config.js';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-export async function signUp(email, password, username, displayName, captchaToken) {
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            captchaToken: captchaToken,
-            data: {
-                username: username,
-                display_name: displayName,
-                registration_ip: '(IP will be captured server-side)'
-            }
-        }
-    });
-    return { data, error };
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
+  isTokenAutoRefreshEnabled: true
+});
+
+export async function signUp(email, password, username, displayName) {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await setDoc(doc(db, "profiles", user.uid), {
+            id: user.uid,
+            username: username,
+            display_name: displayName,
+            bio: "",
+            role: 0,
+            created_at: new Date().toISOString(),
+            member_id: Date.now()
+        });
+        await sendEmailVerification(user);
+        return { data: userCredential, error: null };
+    } catch (error) {
+        return { data: null, error: error };
+    }
 }
 
-export async function signIn(email, password, captchaToken) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-        options: {
-            captchaToken: captchaToken,
+export async function signIn(email, password) {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        if (!userCredential.user.emailVerified) {
+            await firebaseSignOut(auth);
+            return { data: null, error: { message: "Please verify your email before logging in." } };
         }
-    });
-    return { data, error };
+        return { data: userCredential, error: null };
+    } catch (error) {
+        return { data: null, error: error };
+    }
 }
 
 export async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    return { error };
-}
-
-export async function getCurrentUser() {
-    const { data: { session }, error } = await supabase.auth.getSession();
-    if (error) {
-        console.error("Error getting session:", error);
-        return null;
+    try {
+        await firebaseSignOut(auth);
+        return { error: null };
+    } catch (error) {
+        return { error: error };
     }
-    if (!session || !session.user) {
-        return null;
-    }
-    const { data: profile, error: profileError } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', session.user.id)
-        .single();
-
-    if (profileError) {
-        console.error("Error fetching profile:", profileError);
-        return session.user;
-    }
-
-    return { ...session.user, profile };
 }
 
 export function onAuthStateChange(callback) {
-    supabase.auth.onAuthStateChange((event, session) => {
-        callback(event, session);
-    });
+    return onAuthStateChanged(auth, callback);
+}
+
+export async function getCurrentUser() {
+    await auth.authStateReady();
+    const user = auth.currentUser;
+    if (!user) return null;
+    if (!user.emailVerified) {
+        return { ...user, isVerified: false };
+    }
+    const profileRef = doc(db, "profiles", user.uid);
+    const profileSnap = await getDoc(profileRef);
+    if (profileSnap.exists()) {
+        return { ...user, profile: profileSnap.data(), isVerified: true };
+    } else {
+        return { ...user, isVerified: true };
+    }
 }
